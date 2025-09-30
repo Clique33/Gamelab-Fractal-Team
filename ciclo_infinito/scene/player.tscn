@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://y4a7lbkewya6" path="res://assets/sprites/player/DASH/dash_left.png" id="3_j4wxg"]
 [ext_resource type="Texture2D" uid="uid://bclb74woxuy1n" path="res://assets/sprites/player/DASH/dash_right.png" id="4_bup7g"]
 [ext_resource type="Texture2D" uid="uid://c0xj6je8wj6pp" path="res://assets/sprites/player/DASH/dash_up.png" id="5_4ja17"]
-[ext_resource type="Texture2D" uid="uid://bs4ptjvos7tl5" path="res://assets/sprites/player/idle/idle_down.png" id="6_v4iqv"]
-[ext_resource type="Texture2D" uid="uid://bcnx6qa6e7i6m" path="res://assets/sprites/player/idle/idle_left.png" id="7_42h83"]
-[ext_resource type="Texture2D" uid="uid://cbq4cvi4qvuyt" path="res://assets/sprites/player/idle/idle_right.png" id="8_iuf2t"]
-[ext_resource type="Texture2D" uid="uid://di0ca4m7vpeq6" path="res://assets/sprites/player/idle/idle_up.png" id="9_jrjdb"]
-[ext_resource type="Texture2D" uid="uid://bf2d0d8o7v2hx" path="res://assets/sprites/player/run/run_down.png" id="10_kk4ol"]
-[ext_resource type="Texture2D" uid="uid://cxtipjeltmdyt" path="res://assets/sprites/player/run/run_left.png" id="11_4reak"]
-[ext_resource type="Texture2D" uid="uid://b6vkj0eosdtwl" path="res://assets/sprites/player/run/run_right.png" id="12_wt23p"]
-[ext_resource type="Texture2D" uid="uid://lhpa3xxkqu33" path="res://assets/sprites/player/run/run_up.png" id="13_k8m7u"]
+[ext_resource type="Texture2D" uid="uid://bs4ptjvos7tl5" path="res://assets/sprites/player/IDLE/idle_down.png" id="6_v4iqv"]
+[ext_resource type="Texture2D" uid="uid://bcnx6qa6e7i6m" path="res://assets/sprites/player/IDLE/idle_left.png" id="7_42h83"]
+[ext_resource type="Texture2D" uid="uid://cbq4cvi4qvuyt" path="res://assets/sprites/player/IDLE/idle_right.png" id="8_iuf2t"]
+[ext_resource type="Texture2D" uid="uid://di0ca4m7vpeq6" path="res://assets/sprites/player/IDLE/idle_up.png" id="9_jrjdb"]
+[ext_resource type="Texture2D" uid="uid://bf2d0d8o7v2hx" path="res://assets/sprites/player/RUN/run_down.png" id="10_kk4ol"]
+[ext_resource type="Texture2D" uid="uid://cxtipjeltmdyt" path="res://assets/sprites/player/RUN/run_left.png" id="11_4reak"]
+[ext_resource type="Texture2D" uid="uid://b6vkj0eosdtwl" path="res://assets/sprites/player/RUN/run_right.png" id="12_wt23p"]
+[ext_resource type="Texture2D" uid="uid://lhpa3xxkqu33" path="res://assets/sprites/player/RUN/run_up.png" id="13_k8m7u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qucqc"]
 atlas = ExtResource("2_u7b46")
@@ -714,5 +714,12 @@ script = ExtResource("1_34jf3")
 [node name="animacoes" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_to47r")
 animation = &"idle_down"
-frame_progress = 0.214438
+frame_progress = 0.128929
 speed_scale = 1.5
+
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="dash_cooldown" type="Timer" parent="."]
+one_shot = true
