@@ -26,6 +26,7 @@ func _ready() -> void:
 		dash_cooldown.timeout.connect(_on_dash_cooldown_timeout)
 	
 
+
 func _physics_process(_dt):
 	var input_vec = Vector2(
 		Input.get_axis('run_left','run_right'),
