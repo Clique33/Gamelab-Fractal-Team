@@ -31,6 +31,7 @@ func _ready():
 
 	area_attack.get_node("attack_colison").disabled = true
 
+
 func _physics_process(delta: float) -> void:
 	match current_state:
 		State.IDLE:
@@ -43,10 +44,11 @@ func _physics_process(delta: float) -> void:
 			_dash_state()
 	move_and_slide()
 	update_animation()
-	
+
+
 func get_input_direction():
 	return Input.get_vector("run_left","run_right","run_up","run_down")
-		
+
 
 func _idle_state():
 	velocity = Vector2.ZERO
@@ -56,7 +58,7 @@ func _idle_state():
 		current_state = State.ATTACK
 	elif Input.is_action_just_pressed("dash"):
 		current_state = State.DASH
-		
+
 
 func _run_state(delta):
 	var input_direction = get_input_direction()
@@ -72,10 +74,12 @@ func _run_state(delta):
 	elif Input.is_action_just_pressed("dash"):
 		current_state = State.DASH
 
+
 func _attack_state():
 	velocity = Vector2.ZERO
 	area_attack.get_node("attack_colison").disabled = true
-	
+
+
 func _on_animation_finished() -> void:
 	if current_state == State.ATTACK:
 		area_attack.get_node("attack_colison").disabled = true
@@ -84,8 +88,8 @@ func _on_animation_finished() -> void:
 		current_state = State.RUN
 	else:
 		current_state = State.IDLE
-	
-	
+
+
 func _dash_state():
 	if dash_timer.is_stopped():
 		dash_timer.start()
@@ -106,7 +110,8 @@ func _on_dash_timer_timeout() -> void:
 		current_state = State.RUN
 	else:
 		current_state = State.IDLE
-		
+
+
 func update_animation():
 	var anim_name = ""
 	var direction_str = get_direction_string(next_direction)
@@ -122,13 +127,15 @@ func update_animation():
 			anim_name = "dash_" + direction_str
 	if anim.animation != anim_name:
 		anim.play(anim_name)
-			
+
+
 func get_direction_string(next_direction):
 	if abs(next_direction.x) > abs(next_direction.y):
 		return "right"  if next_direction.x > 0 else "left"
 	else:
 		return "down"  if next_direction.y > 0 else "up"
-	
+
+
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("inimigos"):
 		print("dano feito") # Replace with function body.
