@@ -1,12 +1,12 @@
 extends CharacterBody2D
-# ======= NÓS ORIGINAIS =======
+
 @onready var anim  = $animacoes 
 @onready var dash_timer = $dash_timer
 @onready var dash_cooldown = $dash_cooldown
 @export var dash_duracao  = 0.2
 @onready var area_attack = $attack_area
 
-# ======= ESTADO / DIREÇÃO ORIGINAIS =======
+
 var last_facing: String = "down"
 var attack_facing: String = "down"
 
@@ -23,7 +23,7 @@ enum State {IDLE, RUN, ATTACK, DASH}
 var current_state: int = State.IDLE
 var next_direction: Vector2 = Vector2(0,1)
 
-# ======= ATAQUE / COMBO =======
+
 @export var attack1_lock_time := 0.22
 @export var attack2_lock_time := 0.28
 @export var hit1_active_time := 0.12
@@ -36,19 +36,19 @@ var combo_step := 0
 var combo_window_open := false
 var combo_buffered := false
 
-# ======= TAMANHO POR DIREÇÃO =======
+
 @export var hitbox_size_right: Vector2 = Vector2(50, 25)
 @export var hitbox_size_left:  Vector2 = Vector2(50, 25)
 @export var hitbox_size_up:    Vector2 = Vector2(50, 40)
 @export var hitbox_size_down:  Vector2 = Vector2(50, 40)
 
-# ======= OFFSET POR DIREÇÃO =======
+
 @export var hitbox_offset_right: Vector2 = Vector2(18, 0)
 @export var hitbox_offset_left:  Vector2 = Vector2(-18, 0)
 @export var hitbox_offset_up:    Vector2 = Vector2(0, -18)
 @export var hitbox_offset_down:  Vector2 = Vector2(0, 18)
 
-func _ready() -> void:
+func _ready():
 	dash_timer.wait_time = dash_duracao
 	dash_timer.one_shot = true
 	if not dash_timer.timeout.is_connected(_on_dash_timer_timeout):
@@ -57,7 +57,7 @@ func _ready() -> void:
 		dash_cooldown.timeout.connect(_on_dash_cooldown_timeout)
 	area_attack.get_node("attack_colison").disabled = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float):
 	match current_state:
 		State.IDLE:
 			_idle_state()
@@ -70,6 +70,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_update_attack_area_anchor()
 	update_animation()
+	#last_facing = get_direction_string(get_input_direction())
+	#print(last_facing)
 
 func get_input_direction() -> Vector2:
 	return Input.get_vector("run_left","run_right","run_up","run_down")
@@ -87,7 +89,7 @@ func _idle_state() -> void:
 	elif get_input_direction() != Vector2.ZERO:
 		current_state = State.RUN
 
-func _run_state(_delta: float) -> void:	
+func _run_state(_delta: float) :	
 	var input_direction: Vector2 = get_input_direction()
 	if Input.is_action_just_pressed("attack"):
 		if can_start_attack():
@@ -101,7 +103,7 @@ func _run_state(_delta: float) -> void:
 	next_direction = input_direction
 	velocity = input_direction.normalized() * move_speed
 
-func _attack_state() -> void:
+func _attack_state():
 	var input_direction: Vector2 = get_input_direction()
 	if input_direction != Vector2.ZERO:
 		next_direction = input_direction
@@ -112,10 +114,8 @@ func _attack_state() -> void:
 	if Input.is_action_just_pressed("attack") and combo_step == 1 and combo_window_open:
 		combo_buffered = true
 
-func _on_animation_finished() -> void:
-	pass # timers controlam o ataque
 
-func _dash_state() -> void:
+func _dash_state():
 	if dash_timer.is_stopped():
 		dash_timer.start()
 		var dash_direction: Vector2 = next_direction
@@ -141,9 +141,9 @@ func _on_dash_timer_timeout() -> void:
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
 
-# ======= ATAQUE / COMBO =======
-func _start_attack1() -> void:
-	attack_facing = get_direction_string(next_direction)  # trava direção
+
+func _start_attack1() -> void: # Inicia a animação do ataque 1 e ajusta as variáveis de controle
+	attack_facing = get_direction_string(next_direction)  
 	current_state = State.ATTACK
 	can_attack = false
 	combo_step = 1
@@ -159,19 +159,19 @@ func _start_attack1() -> void:
 	_open_combo_window()
 	_end_attack1_after_lock()
 
-func _open_combo_window() -> void:
+func _open_combo_window() -> void: # Espera a janela de combo e, se houve um ataque, inicia o ataque 2
 	combo_window_open = true
 	await get_tree().create_timer(combo_window).timeout
 	combo_window_open = false
 	if combo_step == 1 and combo_buffered:
 		_start_attack2()
 
-func _end_attack1_after_lock() -> void:
+func _end_attack1_after_lock() -> void: # Se após a janela de combo não houver ataque, finaliza o estado de ataque
 	await get_tree().create_timer(attack1_lock_time).timeout
 	if combo_step == 1:
 		_finish_attack_sequence()
 
-func _start_attack2() -> void:
+func _start_attack2() -> void: # Mesma lógica do ataque 1
 	combo_step = 2
 
 	_apply_attack_hitbox_for_facing(attack_facing)
@@ -184,7 +184,7 @@ func _start_attack2() -> void:
 	await get_tree().create_timer(attack2_lock_time).timeout
 	_finish_attack_sequence()
 
-func _finish_attack_sequence() -> void:
+func _finish_attack_sequence() -> void: # Restaura variáveis de controle e devolve para outro estado
 	combo_step = 0
 	if get_input_direction() != Vector2.ZERO:
 		current_state = State.RUN
@@ -193,18 +193,17 @@ func _finish_attack_sequence() -> void:
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
 
-func _enable_attack_hitbox_for(dur: float) -> void:
+func _enable_attack_hitbox_for(dur: float) -> void: # Ativa a colisão de ataque durante o tempo do golpe
 	var col: CollisionShape2D = area_attack.get_node("attack_colison")
 	col.disabled = false
 	await get_tree().create_timer(dur).timeout
 	col.disabled = true
 
-# ======= HITBOX: TAMANHO + OFFSET POR DIREÇÃO =======
-func _apply_attack_hitbox_for_facing(facing: String) -> void:
+
+func _apply_attack_hitbox_for_facing(facing: String) -> void: # Ajusta a hitbox conforme a direção em que o personagem está olhando
 	var col: CollisionShape2D = area_attack.get_node("attack_colison")
 	var rect := col.shape as RectangleShape2D
 	if rect == null:
-		
 		return
 	match facing:
 		"right":
@@ -220,16 +219,17 @@ func _apply_attack_hitbox_for_facing(facing: String) -> void:
 			rect.size = hitbox_size_down
 			col.position = hitbox_offset_down
 
-# Mantém a hitbox “apontando” para onde olha (mesmo desligada fora do ataque)
+# Mantém a hitbox “apontando” para onde o personagem está olhando
 func _update_attack_area_anchor() -> void:
 	if current_state == State.ATTACK:
 		_apply_attack_hitbox_for_facing(attack_facing)
 		return
+	# Fora do ATTACK, ancora pela direção atual (ou última) para o retângulo ficar sempre alinhado.
 	var input_dir: Vector2 = get_input_direction()
 	var facing: String = get_direction_string(input_dir) if input_dir != Vector2.ZERO else last_facing
 	_apply_attack_hitbox_for_facing(facing)
 
-# ======= ANIMAÇÃO =======
+
 func update_animation() -> void:
 	var anim_name := ""
 	var direction_str: String = attack_facing if current_state == State.ATTACK else get_direction_string(next_direction)
@@ -252,15 +252,3 @@ func get_direction_string(v: Vector2) -> String:
 		return "right"  if v.x > 0.0 else "left"
 	else:
 		return "down"  if v.y > 0.0 else "up"
-
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("inimigos"):
-		print("dano feito")
-
-func _update_facing(input_vec: Vector2) -> void:
-	if input_vec == Vector2.ZERO:
-		return
-	if abs(input_vec.x) > abs(input_vec.y):
-		last_facing = "right" if input_vec.x > 0.0 else "left"
-	else:
-		last_facing = "down" if input_vec.y > 0.0 else "up"

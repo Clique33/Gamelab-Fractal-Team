@@ -1196,7 +1196,6 @@ size = Vector2(100, 100)
 size = Vector2(17, 21)
 
 [node name="player" type="CharacterBody2D"]
-position = Vector2(149, 93)
 script = ExtResource("1_34jf3")
 
 [node name="animacoes" type="AnimatedSprite2D" parent="."]
@@ -1215,7 +1214,6 @@ one_shot = true
 [node name="attack_area" type="Area2D" parent="."]
 
 [node name="attack_colison" type="CollisionShape2D" parent="attack_area"]
-position = Vector2(100, 7)
 shape = SubResource("RectangleShape2D_jrjdb")
 one_way_collision_margin = 0.0
 
