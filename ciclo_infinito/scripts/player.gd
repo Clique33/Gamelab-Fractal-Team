@@ -1,42 +1,45 @@
 # res://player/Character.gd
 extends CharacterBody2D
 
-@onready var anim: AnimatedSprite2D = $animacoes           # Animador 2D (SpriteFrames).
-@onready var dash_timer: Timer = $dash_timer               # Janela do dash.
-@onready var dash_cooldown: Timer = $dash_cooldown         # Recarga do dash.
+@onready var anim: AnimatedSprite2D = $animacoes
+@onready var dash_timer: Timer = $dash_timer
+@onready var dash_cooldown: Timer = $dash_cooldown
 
-@export var move_speed: float = 240.0                      # Corrida.
-@export var acceleration: float = 0.20                     # Aceleração (lerp).
-@export var friction: float = 0.20                         # Desaceleração (lerp).
+@export var move_speed: float = 240.0
+@export var acceleration: float = 0.20
+@export var friction: float = 0.20
 
-@export var dash_speed: float = move_speed * 1.5           # Velocidade do dash.
-var is_dashing: bool = false                               # Por quê: bloquear durante dash.
-var can_dash: bool = true                                  # Por quê: respeitar cooldown.
-var dash_dir: Vector2 = Vector2.ZERO                       # Por quê: direção fixa do dash.
+@export var dash_speed: float = move_speed * 1.5
+var is_dashing: bool = false
+var can_dash: bool = true
+var dash_dir: Vector2 = Vector2.ZERO
 
-# ---- Somente animação de ataque (acelerado) ----
-@export var attack_cooldown_after: float = 0.02            # Por quê: respiro menor → resposta mais rápida.
-@export var attack_speed_scale1: float = 1.8               # Por quê: acelera o attack1 (↑ = mais rápido).
-@export var attack_speed_scale2: float = 1.8               # Por quê: acelera o attack2.
-@export var min_attack_duration: float = 0.04              # Por quê: evita 0s se fps/frames forem ruins.
+# Ataque rápido (só anima)
+@export var attack_cooldown_after: float = 0.02
+@export var attack_speed_scale1: float = 1.8
+@export var attack_speed_scale2: float = 1.8
+@export var min_attack_duration: float = 0.04
 
-var is_attacking: bool = false                             # Por quê: travar entrada/controle.
-var attack_stage: int = 0                                  # 0=none, 1=attack1, 2=attack2.
-var combo_buffered: bool = false                           # Por quê: permitir chain 1→2.
-var _attack_end_timer: SceneTreeTimer = null               # Por quê: terminar ataque por tempo.
+var is_attacking: bool = false
+var attack_stage: int = 0            # 0=nenhum, 1=attack1, 2=attack2
+var combo_buffered: bool = false
+var _attack_end_timer: SceneTreeTimer = null
 
-var last_facing: String = "down"                           # Por quê: resolve direção sem input.
+var last_facing: String = "down"     # direção usada para tocar a anima atual
+var pending_facing: String = ""      # direção desejada coletada durante o ataque (aplicada no próximo golpe)
 
 func _ready() -> void:
-	if not dash_timer.timeout.is_connected(_on_dash_timer_timeout): dash_timer.timeout.connect(_on_dash_timer_timeout)
-	if not dash_cooldown.timeout.is_connected(_on_dash_cooldown_timeout): dash_cooldown.timeout.connect(_on_dash_cooldown_timeout)
-	_ensure_attack_anims()                                  # Por quê: força ataques sem loop.
+	if not dash_timer.timeout.is_connected(_on_dash_timer_timeout):
+		dash_timer.timeout.connect(_on_dash_timer_timeout)
+	if not dash_cooldown.timeout.is_connected(_on_dash_cooldown_timeout):
+		dash_cooldown.timeout.connect(_on_dash_cooldown_timeout)
+	_ensure_attack_anims()
 
 func _ensure_attack_anims() -> void:
 	for dir in ["left","right","up","down"]:
 		for a in ["attack1_%s" % dir, "attack2_%s" % dir]:
 			if anim.sprite_frames.has_animation(a):
-				anim.sprite_frames.set_animation_loop(a, false)   # Por quê: não travar em loop.
+				anim.sprite_frames.set_animation_loop(a, false)
 			else:
 				push_warning("FALTA anim '%s' no AnimatedSprite2D" % a)
 
@@ -46,28 +49,28 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("run_up","run_down")
 	)
 
-	# Ataque
+	# Ataque (não bloqueia andar)
 	if Input.is_action_just_pressed("attack"):
 		if not is_attacking and not is_dashing:
-			_start_attack(1)                                     # Por quê: inicia cadeia.
+			_start_attack(1)
 		elif is_attacking and attack_stage == 1:
-			combo_buffered = true                                # Por quê: buffer para o 2º.
+			combo_buffered = true
 
-	# Dash (não cancela ataque)
-	if Input.is_action_just_pressed("dash") and can_dash and not is_dashing and not is_attacking:
+	# Dash (permite dash-cancel)
+	if Input.is_action_just_pressed("dash") and can_dash and not is_dashing:
+		if is_attacking:
+			_cancel_attack()                         # dash-cancel
 		is_dashing = true
 		can_dash = false
 		dash_dir = input_vec.normalized() if input_vec != Vector2.ZERO else _dir_from_facing(last_facing)
 		dash_timer.start()
 		dash_cooldown.start()
+		anim.speed_scale = 1.0
 		anim.play("dash_" + str(last_facing))
 
-	# Movimento
+	# Movimento: dash > andar (mesmo atacando)
 	if is_dashing:
 		velocity = dash_dir * dash_speed
-	elif is_attacking:
-		velocity.x = lerp(velocity.x, 0.0, 0.6)                  # Por quê: sensação de peso no golpe.
-		velocity.y = lerp(velocity.y, 0.0, 0.6)
 	else:
 		if input_vec != Vector2.ZERO:
 			var dir: Vector2 = input_vec.normalized()
@@ -78,16 +81,26 @@ func _physics_process(delta: float) -> void:
 			velocity.y = lerp(velocity.y, 0.0, friction)
 
 	move_and_slide()
-	_update_facing(input_vec)
+	_update_facing(input_vec)        # agora também preenche pending_facing durante o ataque
 	_play_movement_anim()
 
 func _update_facing(input_vec: Vector2) -> void:
-	if is_dashing or is_attacking: return                    # Por quê: não virar durante ações.
+	# Virar durante ataque: só bufferiza; não troca a anima em execução.
+	if is_attacking:
+		if input_vec == Vector2.ZERO: return
+		var new_face := _cardinal_from_input(input_vec)
+		if new_face != "":
+			pending_facing = new_face   # ← será aplicada no começo do próximo golpe
+		return
+	# Fora de ataque: muda de fato.
 	if input_vec == Vector2.ZERO: return
-	if abs(input_vec.x) > abs(input_vec.y):
-		last_facing = "right" if input_vec.x > 0.0 else "left"
+	last_facing = _cardinal_from_input(input_vec)
+
+func _cardinal_from_input(v: Vector2) -> String:
+	if abs(v.x) > abs(v.y):
+		return "right" if v.x > 0.0 else "left"
 	else:
-		last_facing = "down" if input_vec.y > 0.0 else "up"
+		return "down" if v.y > 0.0 else "up"
 
 func _play_movement_anim() -> void:
 	if is_dashing:
@@ -96,7 +109,7 @@ func _play_movement_anim() -> void:
 		return
 	if is_attacking:
 		var an: String = _current_attack_anim_name()
-		if anim.animation != an and anim.sprite_frames.has_animation(an): anim.play(an)  # Por quê: não reiniciar toda hora.
+		if anim.animation != an and anim.sprite_frames.has_animation(an): anim.play(an) # não reinicia toda hora
 		return
 	var moving: bool = velocity.length() > 24.0
 	var mn: String = ("run_" if moving else "idle_") + last_facing
@@ -105,37 +118,54 @@ func _play_movement_anim() -> void:
 func _start_attack(stage: int) -> void:
 	is_attacking = true
 	attack_stage = stage
-	if stage == 1: combo_buffered = false                   # Por quê: recomeça a cadeia.
+	if stage == 1:
+		combo_buffered = false
+	else:
+		# Ao entrar no ataque 2, aplica a direção que foi “guardada” durante o ataque 1.
+		if pending_facing != "":
+			last_facing = pending_facing
+		pending_facing = ""  # limpa o buffer após usar
+
 	var name: String = _current_attack_anim_name()
 	if not anim.sprite_frames.has_animation(name):
 		push_warning("Animação não encontrada: %s" % name); is_attacking = false; attack_stage = 0; return
+
 	anim.sprite_frames.set_animation_loop(name, false)
-	# → Acelera a animação aqui
-	anim.speed_scale = (attack_speed_scale1 if stage == 1 else attack_speed_scale2)  # Por quê: controle direto de velocidade.
+	anim.speed_scale = (attack_speed_scale1 if stage == 1 else attack_speed_scale2)
 	anim.play(name)
 	anim.frame = 0
-	_schedule_attack_end(name)                               # Por quê: termina garantido pelo tempo.
+	_schedule_attack_end(name)
 
 func _schedule_attack_end(anim_name: String) -> void:
 	if _attack_end_timer != null:
 		_attack_end_timer.timeout.disconnect(_on_attack_end_timeout)
-	var frames: int = anim.sprite_frames.get_frame_count(anim_name)         # Frames da anima.
-	var fps: float = anim.sprite_frames.get_animation_speed(anim_name)      # FPS da anima.
-	var base: float = float(frames) / (fps if fps > 0.0 else 1.0)           # Duração base (s).
+	var frames: int = anim.sprite_frames.get_frame_count(anim_name)
+	var fps: float = anim.sprite_frames.get_animation_speed(anim_name)
+	var base: float = float(frames) / (fps if fps > 0.0 else 1.0)
 	var scale: float = attack_speed_scale1 if attack_stage == 1 else attack_speed_scale2
-	var dur_anim: float = max(min_attack_duration, base / max(0.01, scale)) # Por quê: divide pela velocidade.
-	var duration: float = dur_anim + attack_cooldown_after                   # Por quê: adicionar respiro.
+	var dur_anim: float = max(min_attack_duration, base / max(0.01, scale))
+	var duration: float = dur_anim + attack_cooldown_after
 	_attack_end_timer = get_tree().create_timer(duration)
 	_attack_end_timer.timeout.connect(_on_attack_end_timeout)
 
 func _on_attack_end_timeout() -> void:
 	if is_attacking and attack_stage == 1 and combo_buffered:
-		_start_attack(2)                                             # Por quê: chain rápido para 2º golpe.
+		_start_attack(2)                     # agora sai na pending_facing coletada
 	else:
 		is_attacking = false
 		attack_stage = 0
-		# Opcional: voltar speed_scale ao normal para outras anims.
 		anim.speed_scale = 1.0
+		pending_facing = ""                  # limpa qualquer buffer remanescente
+
+func _cancel_attack() -> void:
+	is_attacking = false
+	attack_stage = 0
+	anim.speed_scale = 1.0
+	pending_facing = ""                      # não carrega direção ao cancelar
+	if _attack_end_timer != null:
+		if _attack_end_timer.timeout.is_connected(_on_attack_end_timeout):
+			_attack_end_timer.timeout.disconnect(_on_attack_end_timeout)
+		_attack_end_timer = null
 
 func _current_attack_anim_name() -> String:
 	return ("attack%d_" % attack_stage) + str(last_facing)
