@@ -4,6 +4,9 @@ extends CharacterBody2D
 @onready var anim  = $animacoes 
 @onready var dash_timer = $dash_timer
 @onready var dash_cooldown = $dash_cooldown
+@export var dash_duracao  = 0.2
+
+@onready var area_attack = $attack_area
 
 #movimentação base
 @export var move_speed = 240.00
@@ -14,95 +17,118 @@ extends CharacterBody2D
 var is_dashing = false
 var can_dash = true
 var dash_dir = Vector2.ZERO
+#var direction
+enum State {IDLE, RUN, ATTACK,DASH}
+var current_state = State.IDLE
 
-#variveis setadas em  00
-var last_facing = 'down'
+var next_direction = Vector2(0,1)
 
-func _ready() -> void:
-	#quando dash_timer acabar chame _on-dash_timer_timeout
+func _ready():
+	dash_timer.wait_time = dash_duracao
+	dash_timer.one_shot = true
 	if not dash_timer.timeout.is_connected(_on_dash_timer_timeout):
 		dash_timer.timeout.connect(_on_dash_timer_timeout)
-	if not dash_cooldown.timeout.is_connected(_on_dash_cooldown_timeout):
-		dash_cooldown.timeout.connect(_on_dash_cooldown_timeout)
-	
 
-func _physics_process(_dt):
-	var input_vec = Vector2(
-		Input.get_axis('run_left','run_right'),
-		Input.get_axis('run_up','run_down')
-	)
-	if Input.is_action_just_pressed('dash') and  can_dash and not  is_dashing:
-		is_dashing = true
-		can_dash = false
-		if input_vec  != Vector2.ZERO:
-			dash_dir = input_vec.normalized()
-		else:
-			#swith do godt
-			match last_facing:
-				"right": dash_dir = Vector2.RIGHT
-				"left":  dash_dir = Vector2.LEFT
-				"up":    dash_dir = Vector2.UP
-				_:       dash_dir = Vector2.DOWN
-		dash_timer.start()       
-		dash_cooldown.start()    
-		anim.play("dash_" + str(last_facing))  
-		
-	if is_dashing:
-		velocity = dash_dir * dash_speed
-		
-	else:
-		
-		if input_vec != Vector2.ZERO:
-			var dir = input_vec.normalized()
-			velocity.x = lerp(velocity.x, dir.x * move_speed,acceleration)
-			velocity.y = lerp(velocity.y, dir.y * move_speed,acceleration)
-		else:
-			velocity.x = lerp(velocity.x, 0.0,friction)
-			velocity.y = lerp(velocity.y, 0.0,friction)
+	area_attack.get_node("attack_colison").disabled = true
 
-
+func _physics_process(delta: float) -> void:
+	match current_state:
+		State.IDLE:
+			_idle_state()
+		State.RUN:
+			_run_state(delta)
+		State.ATTACK:
+			_attack_state()
+		State.DASH:
+			_dash_state()
 	move_and_slide()
-	_update_facing(input_vec)
-	_play_movement_anim()
+	update_animation()
 	
-	
-func _update_facing(input_vec):
-	if is_dashing:
-		return
-	if input_vec == Vector2.ZERO:
-		return
-	if abs(input_vec.x) > abs(input_vec.y):
-		if input_vec.x > 0.0:
-			last_facing = 'right'
-		else:
-			last_facing = 'left'
-	else:
-		if input_vec.y > 0.0:
-			last_facing = 'down'
-		else:
-			last_facing = 'up'
-
-
-func _play_movement_anim():
-	# prioridade pro dash
-	if is_dashing:
-		var dash_now = "dash_" + str(last_facing)
-		if anim.animation != dash_now:
-			anim.play(dash_now)
-		return   
-	var moving = velocity.length() > 24.0 #baseado move speed
-	var base
-	if moving:
-		base = 'run_'
-	else:
-		base = 'idle_'
-	var animar_now = base + last_facing
-	if anim.animation != animar_now:
-		anim.play(animar_now)
+func get_input_direction():
+	return Input.get_vector("run_left","run_right","run_up","run_down")
 		
 
-func _on_dash_timer_timeout():
-	is_dashing = false
+func _idle_state():
+	velocity = Vector2.ZERO
+	if get_input_direction() != Vector2.ZERO:
+		current_state = State.RUN
+	elif Input.is_action_just_pressed("attack"):
+		current_state = State.ATTACK
+	elif Input.is_action_just_pressed("dash"):
+		current_state = State.DASH
+		
 
-func _on_dash_cooldown_timeout():
-	can_dash = true
+func _run_state(delta):
+	var input_direction = get_input_direction()
+	if input_direction == Vector2.ZERO:
+		current_state = State.IDLE
+		return
+	
+	next_direction = input_direction
+	velocity = input_direction.normalized() * move_speed
+	
+	if Input.is_action_just_pressed("attack"):
+		current_state = State.ATTACK
+	elif Input.is_action_just_pressed("dash"):
+		current_state = State.DASH
+
+func _attack_state():
+	velocity = Vector2.ZERO
+	area_attack.get_node("attack_colison").disabled = true
+	
+func _on_animation_finished() -> void:
+	if current_state == State.ATTACK:
+		area_attack.get_node("attack_colison").disabled = true
+	
+	if get_input_direction() != Vector2.ZERO:
+		current_state = State.RUN
+	else:
+		current_state = State.IDLE
+	
+	
+func _dash_state():
+	if dash_timer.is_stopped():
+		dash_timer.start()
+		
+		var dash_direction = next_direction
+		
+		if get_input_direction() != Vector2.ZERO:
+			dash_direction = get_input_direction()
+		
+		velocity = dash_direction.normalized()  * dash_speed #* move_speed
+
+
+func _on_dash_timer_timeout() -> void:
+	$player_colision.disabled = false
+	
+	velocity = Vector2.ZERO
+	if  get_input_direction() != Vector2.ZERO:
+		current_state = State.RUN
+	else:
+		current_state = State.IDLE
+		
+func update_animation():
+	var anim_name = ""
+	var direction_str = get_direction_string(next_direction)
+	
+	match current_state:
+		State.IDLE:
+			anim_name = "idle_" + direction_str
+		State.RUN:
+			anim_name = "run_" + direction_str
+		State.ATTACK:
+			anim_name = "attack1_" + direction_str
+		State.DASH:
+			anim_name = "dash_" + direction_str
+	if anim.animation != anim_name:
+		anim.play(anim_name)
+			
+func get_direction_string(next_direction):
+	if abs(next_direction.x) > abs(next_direction.y):
+		return "right"  if next_direction.x > 0 else "left"
+	else:
+		return "down"  if next_direction.y > 0 else "up"
+	
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("inimigos"):
+		print("dano feito") # Replace with function body.
