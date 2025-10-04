@@ -1209,8 +1209,8 @@ script = ExtResource("1_34jf3")
 
 [node name="animacoes" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_to47r")
-animation = &"attack2_up"
-frame_progress = 0.771514
+animation = &"attack1_down"
+frame_progress = 0.997805
 speed_scale = 1.5
 
 [node name="dash_timer" type="Timer" parent="."]
