@@ -1211,7 +1211,7 @@ one_shot = true
 [node name="dash_cooldown" type="Timer" parent="."]
 one_shot = true
 
-[node name="attack_area" type="Area2D" parent="."]
+[node name="attack_area" type="Area2D" parent="." groups=["player"]]
 
 [node name="attack_colison" type="CollisionShape2D" parent="attack_area"]
 shape = SubResource("RectangleShape2D_jrjdb")
