@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var anim  = $animacoes 
+@onready var anim  = $animacoes  
 @onready var dash_timer = $dash_timer
 @onready var dash_cooldown = $dash_cooldown
 @export var dash_duracao  = 0.2
@@ -31,6 +31,11 @@ var next_direction: Vector2 = Vector2(0,1)
 @export var combo_window := 0.20
 @export var attack_cooldown := 0.15
 
+# --- NOVO: Variáveis de Dano ---
+@export var attack1_damage: float = 10.0 # Dano do primeiro golpe
+@export var attack2_damage: float = 15.0 # Dano do segundo golpe
+# -----------------------------
+
 var can_attack := true
 var combo_step := 0
 var combo_window_open := false
@@ -56,6 +61,11 @@ func _ready():
 	if not dash_cooldown.timeout.is_connected(_on_dash_cooldown_timeout):
 		dash_cooldown.timeout.connect(_on_dash_cooldown_timeout)
 	area_attack.get_node("attack_colison").disabled = true
+	
+	# --- NOVO: Conecta o sinal de colisão para aplicar dano ---
+	if not area_attack.body_entered.is_connected(_on_area_attack_body_entered):
+		area_attack.body_entered.connect(_on_area_attack_body_entered)
+	# -----------------------------------------------------------
 
 func _physics_process(delta: float):
 	match current_state:
@@ -89,7 +99,7 @@ func _idle_state() -> void:
 	elif get_input_direction() != Vector2.ZERO:
 		current_state = State.RUN
 
-func _run_state(_delta: float) :	
+func _run_state(_delta: float) :    
 	var input_direction: Vector2 = get_input_direction()
 	if Input.is_action_just_pressed("attack"):
 		if can_start_attack():
@@ -140,6 +150,27 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_dash_cooldown_timeout() -> void:
 	can_dash = true
+
+# --- NOVA FUNÇÃO: Aplica dano ao CharacterBody atingido ---
+func _on_area_attack_body_entered(body: Node2D) -> void:
+	# Verifica se o alvo é um CharacterBody2D e tem a função 'take_damage'
+	if body is CharacterBody2D and body.has_method("take_damage"):
+		var damage_amount: float = 0.0
+
+		# Determina o dano baseado no combo atual
+		if combo_step == 1:
+			damage_amount = attack1_damage
+		elif combo_step == 2:
+			damage_amount = attack2_damage
+		
+		# Garante que o dano só seja aplicado quando o golpe está ATIVO
+		if damage_amount > 0.0:
+			# Calcula a direção do knockback (do atacante para o alvo)
+			var knockback_direction: Vector2 = (body.global_position - global_position).normalized()
+			
+			# Chama a função take_damage no script do alvo (ex: inimigo)
+			body.take_damage(damage_amount, knockback_direction)
+# --------------------------------------------------------
 
 
 func _start_attack1() -> void: # Inicia a animação do ataque 1 e ajusta as variáveis de controle
