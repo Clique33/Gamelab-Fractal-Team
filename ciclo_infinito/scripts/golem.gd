@@ -1,4 +1,4 @@
-# File: res://scripts/golem.gd
+
 extends CharacterBody2D
 
 @export_category("objects")
