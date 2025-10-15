@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://din2a6ejyj2k1"]
+[gd_scene load_steps=5 format=3 uid="uid://din2a6ejyj2k1"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="PackedScene" uid="uid://b428k5q3uu6me" path="res://slime/mob.tscn" id="2_mtgoy"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
+[ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]
 
 [node name="Teste" type="Node2D"]
 
@@ -14,3 +15,9 @@ position = Vector2(514, 379)
 
 [node name="player" parent="." instance=ExtResource("3_m560e")]
 position = Vector2(225, 375)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="golem" parent="." instance=ExtResource("4_mtgoy")]
+position = Vector2(824, 163)

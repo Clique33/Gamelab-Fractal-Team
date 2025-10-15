@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Ciclo_Infinito"
+run/main_scene="uid://din2a6ejyj2k1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
