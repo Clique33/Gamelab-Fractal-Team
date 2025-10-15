@@ -36,6 +36,12 @@ var next_direction: Vector2 = Vector2(0,1)
 @export var attack2_damage: float = 15.0 # Dano do segundo golpe
 # -----------------------------
 
+# --- NOVO: Variáveis de Vida do Jogador ---
+@export var max_health: float = 100.0
+var current_health: float
+# ----------------------------------------
+
+
 var can_attack := true
 var combo_step := 0
 var combo_window_open := false
@@ -54,6 +60,11 @@ var combo_buffered := false
 @export var hitbox_offset_down:  Vector2 = Vector2(0, 18)
 
 func _ready():
+	# --- novinho em folha: inicializa a vida do jogador ---
+	current_health = max_health
+	# -----------------------------------------
+	
+	
 	dash_timer.wait_time = dash_duracao
 	dash_timer.one_shot = true
 	if not dash_timer.timeout.is_connected(_on_dash_timer_timeout):
@@ -66,6 +77,35 @@ func _ready():
 	if not area_attack.body_entered.is_connected(_on_area_attack_body_entered):
 		area_attack.body_entered.connect(_on_area_attack_body_entered)
 	# -----------------------------------------------------------
+	# --- NOVO: Função para receber dano ---
+func take_damage(damage_amount: float, hit_direction: Vector2) -> void:
+	if current_state == State.DASH: # Opcional: fica invencível durante o dash
+		return
+
+	current_health -= damage_amount
+	print("Player recebeu dano de ", damage_amount, ". Vida restante: ", current_health)
+	
+	# Efeito de knockback simples
+	var knockback_force: float = 350.0
+	velocity = hit_direction * knockback_force
+
+	# Lógica de morte
+	if current_health <= 0.0:
+		die()
+
+# --- NOVO: Função de morte ---
+func die() -> void:
+	print("O jogador foi derrotado!")
+	# Esta é a ÚNICA linha de comando que deve estar aqui.
+	# Ela cuida de tudo: destrói a cena atual (com o jogador morto)
+	# e a recria do zero (com o jogador vivo no início).
+	get_tree().call_deferred("reload_current_scene")
+	
+	# GARANTA QUE NÃO HÁ NENHUMA LINHA COM 'queue_free()' OU 'free()' AQUI.
+	# Ou a gente pode adicionar uma animação de morte e depois recarregar
+	# queue_free() removeria o jogador do jogo
+# -----------------------------------
+
 
 func _physics_process(delta: float):
 	match current_state:
