@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://downt2rxxaqaf"]
+[gd_scene load_steps=7 format=3 uid="uid://downt2rxxaqaf"]
 
 [ext_resource type="Texture2D" uid="uid://n6opr2ssjnv5" path="res://imagens/ChatGPT_Image_28_de_set._de_2025_16_15_08.png" id="1_iwfq2"]
+[ext_resource type="Script" uid="uid://yshas32n0ny5" path="res://scripts/main_menu.gd" id="2_rvc10"]
 [ext_resource type="Texture2D" uid="uid://cp1sh8hqy8ani" path="res://imagens/CICLO_TRANSPARENTE.png" id="2_tf3dk"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="3_cqjrg"]
 [ext_resource type="Texture2D" uid="uid://cutt1kh3xr6q" path="res://imagens/logo-discord-1024.png" id="4_e2xy7"]
-[ext_resource type="Script" path="res://discord_button.gd" id="5_fimr5"]
+[ext_resource type="Script" uid="uid://chooa7va780wc" path="res://discord_button.gd" id="5_fimr5"]
 
 [node name="Control" type="TextureRect"]
 anchors_preset = 15
@@ -18,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_iwfq2")
 expand_mode = 2
+script = ExtResource("2_rvc10")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -73,7 +75,7 @@ theme_override_fonts/font = ExtResource("3_cqjrg")
 theme_override_font_sizes/font_size = 46
 text = "Opções"
 
-[node name="Sair_Button" type="Button" parent="VBoxContainer"]
+[node name="Creditos_button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -107,4 +109,6 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("5_fimr5")
 
+[connection signal="pressed" from="VBoxContainer/Jogar_Button" to="." method="_on_jogar_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Creditos_button" to="." method="_on_creditos_button_pressed"]
 [connection signal="pressed" from="DiscordButton" to="DiscordButton" method="_on_link_button_pressed"]
