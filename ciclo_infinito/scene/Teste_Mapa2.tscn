@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=5 format=3 uid="uid://bsdu203owhbu5"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="PackedScene" uid="uid://b428k5q3uu6me" path="res://slime/mob.tscn" id="2_mtgoy"]
