@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]
 
 [node name="Teste" type="Node2D"]
+position = Vector2(-73, 38)
 
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 20)

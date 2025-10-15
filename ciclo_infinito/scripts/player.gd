@@ -122,6 +122,10 @@ func _physics_process(delta: float):
 	update_animation()
 	#last_facing = get_direction_string(get_input_direction())
 	#print(last_facing)
+	
+	%ProgressBar.value = current_health
+	%ProgressBar.max_value = 100.0
+	
 
 func get_input_direction() -> Vector2:
 	return Input.get_vector("run_left","run_right","run_up","run_down")
