@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8f43sr71atgk"]
+[gd_scene load_steps=4 format=3 uid="uid://cavpp2x3ntvtk"]
 
-[ext_resource type="Script" uid="uid://bem63v1cgxs27" path="res://creditos.gd" id="1_njlfq"]
+[ext_resource type="Script" uid="uid://be8jarypcwqr7" path="res://creditos.gd" id="1_njlfq"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="2_2bq7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bq7n"]
