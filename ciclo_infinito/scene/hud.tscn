@@ -1,0 +1,154 @@
+[gd_scene load_steps=6 format=3 uid="uid://cko5p6wfo3fqa"]
+
+[ext_resource type="Script" uid="uid://j70ko5h6yrbl" path="res://scene/hud.gd" id="1_pvgpj"]
+[ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="2_nhyt6"]
+[ext_resource type="Texture2D" uid="uid://5fmu0qmtph6b" path="res://imagens/imagem_2025-10-15_090032858.png" id="3_ry2h7"]
+[ext_resource type="Texture2D" uid="uid://bdge70sihl0cg" path="res://imagens/imagem_2025-10-15_090129768.png" id="4_lky30"]
+[ext_resource type="Texture2D" uid="uid://bo55ti8tejuad" path="res://imagens/imagem_2025-10-15_090149589.png" id="5_qy82l"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_pvgpj")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -638.0
+offset_top = -359.0
+offset_right = -382.0
+offset_bottom = -255.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="coracao_vazio" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(54, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ry2h7")
+
+[node name="coracao_meio" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(54, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lky30")
+
+[node name="coracao_cheio" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(54, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qy82l")
+
+[node name="coracao_vazio2" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(106, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ry2h7")
+
+[node name="coracao_meio2" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(106, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lky30")
+
+[node name="coracao_cheio2" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(106, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qy82l")
+
+[node name="coracao_vazio3" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(159, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ry2h7")
+
+[node name="coracao_meio3" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(159, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lky30")
+
+[node name="coracao_cheio3" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(159, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qy82l")
+
+[node name="coracao_vazio4" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(210, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ry2h7")
+
+[node name="coracao_meio4" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(210, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lky30")
+
+[node name="coracao_cheio4" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(210, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qy82l")
+
+[node name="coracao_vazio5" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(264, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ry2h7")
+
+[node name="coracao_meio5" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(264, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lky30")
+
+[node name="coracao_cheio5" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(264, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qy82l")
+
+[node name="coracao_vazio6" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(317, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ry2h7")
+
+[node name="coracao_meio6" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(317, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("4_lky30")
+
+[node name="coracao_cheio6" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(317, 54)
+scale = Vector2(2, 2)
+texture = ExtResource("5_qy82l")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 32.0
+anchor_bottom = 17.925
+offset_top = -3.0
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3772, 0.082, 0.41, 0.27451)
+
+[node name="jogar_novamente" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 16.025
+anchor_top = 8.0
+anchor_right = 16.025
+anchor_bottom = 8.0
+offset_left = -194.0
+offset_top = 219.0
+offset_right = 194.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.768627, 0.721569, 0.615686, 1)
+theme_override_fonts/font = ExtResource("2_nhyt6")
+theme_override_font_sizes/font_size = 46
+text = "jogar novamente"
+flat = true
+
+[connection signal="pressed" from="Control/jogar_novamente" to="." method="_on_jogar_novamente_pressed"]
