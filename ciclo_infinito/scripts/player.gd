@@ -96,15 +96,9 @@ func take_damage(damage_amount: float, hit_direction: Vector2) -> void:
 # --- NOVO: Função de morte ---
 func die() -> void:
 	print("O jogador foi derrotado!")
-	# Esta é a ÚNICA linha de comando que deve estar aqui.
-	# Ela cuida de tudo: destrói a cena atual (com o jogador morto)
-	# e a recria do zero (com o jogador vivo no início).
-	get_tree().call_deferred("reload_current_scene")
-	
-	# GARANTA QUE NÃO HÁ NENHUMA LINHA COM 'queue_free()' OU 'free()' AQUI.
-	# Ou a gente pode adicionar uma animação de morte e depois recarregar
-	# queue_free() removeria o jogador do jogo
-# -----------------------------------
+	var death_scene = preload("res://scene/Death_screen.tscn").instantiate()
+	get_tree().root.add_child(death_scene)
+	death_scene.set_layer(100)
 
 
 func _physics_process(delta: float):
