@@ -61,7 +61,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_8ihwp"]
 resource_name = "attack_down"
 length = 0.9
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -168,7 +167,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_5krk2"]
 resource_name = "attack_right"
 length = 0.9
-loop_mode = 2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -222,7 +220,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_et38h"]
 resource_name = "attack_up"
 length = 0.9
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1155,7 +1152,7 @@ size = Vector2(33, 24)
 radius = 276.11
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1c6a"]
-radius = 24.3311
+radius = 63.21
 
 [node name="golem" type="CharacterBody2D"]
 collision_layer = 4
