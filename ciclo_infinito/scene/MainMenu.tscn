@@ -86,7 +86,7 @@ theme_override_fonts/font = ExtResource("3_cqjrg")
 theme_override_font_sizes/font_size = 46
 text = "Créditos"
 
-[node name="Sair_Button2" type="Button" parent="VBoxContainer"]
+[node name="Sair_Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -110,5 +110,7 @@ stretch_mode = 0
 script = ExtResource("5_fimr5")
 
 [connection signal="pressed" from="VBoxContainer/Jogar_Button" to="." method="_on_jogar_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opções_Button" to="." method="_on_opções_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Creditos_button" to="." method="_on_creditos_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sair_Button" to="." method="_on_sair_button_2_pressed"]
 [connection signal="pressed" from="DiscordButton" to="DiscordButton" method="_on_link_button_pressed"]
