@@ -17,4 +17,5 @@ func _on_sair_button_pressed() -> void:
 	pass
 
 func _on_opções_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scene/menu_de_opcoes.tscn")
 	pass
