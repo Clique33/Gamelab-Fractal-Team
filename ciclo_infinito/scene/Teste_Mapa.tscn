@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://din2a6ejyj2k1"]
+[gd_scene load_steps=5 format=3 uid="uid://din2a6ejyj2k1"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
+[ext_resource type="AudioStream" uid="uid://ce378hasf2vjm" path="res://assets/musica/Hades - God of the Dead - Supergiant Games (youtube).mp3" id="4_m560e"]
 [ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]
 
 [node name="Teste" type="Node2D"]
+position = Vector2(-73, 38)
 
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 20)
@@ -23,3 +25,7 @@ position = Vector2(880, 511)
 
 [node name="golem2" parent="." instance=ExtResource("4_mtgoy")]
 position = Vector2(183, 512)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_m560e")
+autoplay = true
