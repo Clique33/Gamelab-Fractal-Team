@@ -16,6 +16,6 @@ func _on_sair_button_pressed() -> void:
 	get_tree().quit()
 	pass
 
-func _on_opções_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scene/menu_de_opcoes.tscn")
+func _on_DiscordButton_pressed() -> void:
+	OS.shell_open("https://discord.gg/9z4Mrfce")
 	pass
