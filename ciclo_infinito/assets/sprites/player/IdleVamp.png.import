@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dslkbgs4suie3"
-path="res://.godot/imported/lixeira1..png-dbfd245508f0e132dbff9d1009a4f041.ctex"
+uid="uid://b31qbydqhwrwt"
+path="res://.godot/imported/IdleVamp.png-b8fdca1c45408f8e9a8497664daf22a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/lixeira1..png"
-dest_files=["res://.godot/imported/lixeira1..png-dbfd245508f0e132dbff9d1009a4f041.ctex"]
+source_file="res://assets/sprites/player/IdleVamp.png"
+dest_files=["res://.godot/imported/IdleVamp.png-b8fdca1c45408f8e9a8497664daf22a2.ctex"]
 
 [params]
 

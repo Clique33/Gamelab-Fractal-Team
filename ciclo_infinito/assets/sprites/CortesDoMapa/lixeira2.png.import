@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1fqkvx7plhrg"
-path="res://.godot/imported/Lixeira direita.png-854b2958f690ddcfb74200bee429a429.ctex"
+uid="uid://y242jwdjhav0"
+path="res://.godot/imported/lixeira2.png-a10bc75ac327bfcd838fdaa860069dae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/CortesDoMapa/Lixeira direita.png"
-dest_files=["res://.godot/imported/Lixeira direita.png-854b2958f690ddcfb74200bee429a429.ctex"]
+source_file="res://assets/sprites/CortesDoMapa/lixeira2.png"
+dest_files=["res://.godot/imported/lixeira2.png-a10bc75ac327bfcd838fdaa860069dae.ctex"]
 
 [params]
 
