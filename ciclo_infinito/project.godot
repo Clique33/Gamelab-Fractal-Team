@@ -71,7 +71,7 @@ interact={
 [layer_names]
 
 2d_physics/layer_1="Mundo"
-2d_physics/layer_2="hitbox"
+2d_physics/layer_2="hitbox_jogador"
 2d_physics/layer_3="inimigo"
 2d_physics/layer_4="Ataque_jogador"
 2d_physics/layer_5="Ataque_inimigo"

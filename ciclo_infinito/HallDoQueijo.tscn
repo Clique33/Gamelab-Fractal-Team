@@ -1,8 +1,10 @@
-[gd_scene load_steps=36 format=4 uid="uid://bgv1wic2ps8oa"]
+[gd_scene load_steps=38 format=4 uid="uid://bgv1wic2ps8oa"]
 
 [ext_resource type="Texture2D" uid="uid://cdawsav4cfe3r" path="res://assets/sprites/CortesDoMapa/mapa fractal.png" id="1_0at56"]
 [ext_resource type="Texture2D" uid="uid://bft44eq1uf20f" path="res://assets/sprites/CortesDoMapa/mapa fractal SAFE ZONE-export.png" id="2_q007y"]
+[ext_resource type="PackedScene" uid="uid://bi04t2jd83mha" path="res://scene/elevador_interativo.tscn" id="3_mr3py"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_q007y"]
+[ext_resource type="PackedScene" uid="uid://c1t0cprxobugr" path="res://scene/Teste_Mapa2.tscn" id="4_61582"]
 [ext_resource type="PackedScene" uid="uid://12i1ywgpw05p" path="res://npc_2.tscn" id="4_yhpuy"]
 [ext_resource type="Texture2D" uid="uid://dslkbgs4suie3" path="res://assets/sprites/CortesDoMapa/lixeira1..png" id="5_sibso"]
 [ext_resource type="Texture2D" uid="uid://y242jwdjhav0" path="res://assets/sprites/CortesDoMapa/lixeira2.png" id="6_mr3py"]
@@ -218,8 +220,14 @@ tile_map_data = PackedByteArray("AAAGABAAAgAQABMAAAAGAAMAAgAQAAcAAAAGAAkAAgAQAAo
 tile_set = SubResource("TileSet_61582")
 
 [node name="Elevador" type="TileMapLayer" parent="."]
+scale = Vector2(1, 1)
 tile_map_data = PackedByteArray("AAATAPz/AAAuAAYAAAA=")
 tile_set = SubResource("TileSet_xg1u2")
+
+[node name="ElevadorInterativo" parent="." instance=ExtResource("3_mr3py")]
+position = Vector2(536.429, -133.571)
+scale = Vector2(1, 1)
+target_scene = ExtResource("4_61582")
 
 [node name="ParedeRampa" type="TileMapLayer" parent="."]
 position = Vector2(27, -15)
@@ -250,9 +258,9 @@ tile_map_data = PackedByteArray("AAASAAgAAAARAAMAAAA=")
 tile_set = SubResource("TileSet_d1abf")
 
 [node name="player" parent="." instance=ExtResource("3_q007y")]
-position = Vector2(416, 378)
+position = Vector2(636.429, -130)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D2" type="Camera2D" parent="player"]
 
 [node name="NPC2" parent="." instance=ExtResource("4_yhpuy")]
 position = Vector2(798, 260)
