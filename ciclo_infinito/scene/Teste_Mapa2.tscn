@@ -8,13 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://c80omegwkn2ei" path="res://scene/behemot.tscn" id="5_nv5yn"]
 [ext_resource type="PackedScene" uid="uid://deyn0aff4vkxb" path="res://scene/beholder2.tscn" id="6_h1h8w"]
 [ext_resource type="PackedScene" uid="uid://dr0s7gb32d5vh" path="res://scene/golem_azul.tscn" id="6_to50h"]
-[ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://npc.tscn" id="7_6yspw"]
+[ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://scene/npc.tscn" id="7_6yspw"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
 
 [node name="Teste" type="Node2D"]
 
-[node name="Node" type="Node" parent="."]
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("label_contador")]
 script = ExtResource("1_jobxa")
+label_contador = NodePath("../player/enemies")
 
 [node name="golem" parent="Node" instance=ExtResource("4_mtgoy")]
 position = Vector2(512, 201)
