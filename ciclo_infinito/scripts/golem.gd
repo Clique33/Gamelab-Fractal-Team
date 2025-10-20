@@ -1,6 +1,10 @@
 
 extends CharacterBody2D
 
+#Contador para a tela de vitória
+signal golem_defeated # <-- ADICIONE ESTA LINHA
+
+
 @export_category("objects")
 @export var sprite: Sprite2D = null
 @export var anim: AnimationPlayer = null
@@ -137,7 +141,9 @@ func take_damage(damage: float, hit_direction: Vector2) -> void:
 
 func die() -> void:
 	print("Inimigo foi derrotado!")
+	golem_defeated.emit()
 	queue_free()
+
 
 
 # ======== Movimento / Animação ========

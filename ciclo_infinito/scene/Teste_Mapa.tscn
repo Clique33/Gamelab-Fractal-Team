@@ -14,11 +14,22 @@ script = ExtResource("1_dncqo")
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 20)
 
+[node name="NPC" parent="." instance=ExtResource("5_m560e")]
+position = Vector2(515, -129)
+scale = Vector2(0.5, 0.5)
+
 [node name="player" parent="." instance=ExtResource("3_m560e")]
-position = Vector2(417, -176)
+position = Vector2(572, -189)
+scale = Vector2(1.2, 1.2)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(1.2, 1.2)
+
+[node name="golem3" parent="player" groups=["enemies"] instance=ExtResource("4_mtgoy")]
+position = Vector2(1490, 4421)
+
+[node name="golem4" parent="." groups=["enemies"] instance=ExtResource("4_mtgoy")]
+position = Vector2(379, 665)
 
 [node name="pause_menu" parent="player/Camera2D" instance=ExtResource("6_8fnhe")]
 process_mode = 2
@@ -34,8 +45,8 @@ metadata/_edit_use_anchors_ = true
 [node name="golem3" parent="." instance=ExtResource("4_mtgoy")]
 position = Vector2(451, 297)
 
-[node name="golem" parent="." instance=ExtResource("4_mtgoy")]
-position = Vector2(880, 511)
+[node name="golem" parent="." groups=["enemies"] instance=ExtResource("4_mtgoy")]
+position = Vector2(227, 271)
 
 [node name="golem2" parent="." instance=ExtResource("4_mtgoy")]
 position = Vector2(183, 512)

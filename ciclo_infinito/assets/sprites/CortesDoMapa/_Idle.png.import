@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y242jwdjhav0"
-path="res://.godot/imported/lixeira2.png-08d3123614bc25a17d23a09b9efe01d0.ctex"
+uid="uid://bg0k2qwoehnrc"
+path="res://.godot/imported/_Idle.png-e0acdc352c02ef4d70d711266ce260dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/lixeira2.png"
-dest_files=["res://.godot/imported/lixeira2.png-08d3123614bc25a17d23a09b9efe01d0.ctex"]
+source_file="res://assets/sprites/CortesDoMapa/_Idle.png"
+dest_files=["res://.godot/imported/_Idle.png-e0acdc352c02ef4d70d711266ce260dc.ctex"]
 
 [params]
 
