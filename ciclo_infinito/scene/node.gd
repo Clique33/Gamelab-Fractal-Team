@@ -15,5 +15,3 @@ func _process(delta: float) -> void:
 func vitoria() -> void:
 	set_process(false) 
 	print("🎉 Vitória! Todos os inimigos foram derrotados!")
-
-   
