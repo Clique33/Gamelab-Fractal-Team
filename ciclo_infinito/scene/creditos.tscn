@@ -4,10 +4,10 @@
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="2_2bq7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bq7n"]
-bg_color = Color(0, 0, 0, 0.392157)
+bg_color = Color(0, 0, 0, 1)
 
 [node name="ScrollContainer" type="ScrollContainer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -288.0

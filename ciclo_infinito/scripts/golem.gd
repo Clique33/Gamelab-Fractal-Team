@@ -15,7 +15,7 @@ signal golem_defeated # <-- ADICIONE ESTA LINHA
 @export var stop_distance: float = 40.0
 
 @export_category("Combat")
-@export var attack_damage: float = 15.0
+@export var attack_damage: float = 20.0
 @export var attack_cooldown: float = 1.5
 var can_attack: bool = true
 

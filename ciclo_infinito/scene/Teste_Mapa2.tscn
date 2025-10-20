@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=10 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scene/node.gd" id="1_jobxa"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djrevjgpeak50" path="res://scene/golem_branco.tscn" id="5_0ny76"]
 [ext_resource type="PackedScene" uid="uid://c80omegwkn2ei" path="res://scene/behemot.tscn" id="5_nv5yn"]
 [ext_resource type="PackedScene" uid="uid://dr0s7gb32d5vh" path="res://scene/golem_azul.tscn" id="6_to50h"]
+[ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
 
 [node name="Teste" type="Node2D"]
 
@@ -37,7 +38,15 @@ position = Vector2(514, 379)
 collision_layer = 4
 
 [node name="player" parent="." instance=ExtResource("3_m560e")]
-position = Vector2(416, -153)
+position = Vector2(574, -278)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(1.6, 1.6)
+[node name="enemies" type="Label" parent="player"]
+offset_left = -264.545
+offset_top = -125.455
+offset_right = -133.545
+offset_bottom = -102.455
+theme_override_colors/font_shadow_color = Color(0.662745, 0.027451, 0.933333, 1)
+theme_override_fonts/font = ExtResource("9_6yspw")
+text = "Inimigos mortos:"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

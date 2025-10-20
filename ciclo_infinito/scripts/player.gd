@@ -1,5 +1,18 @@
 extends CharacterBody2D
 
+@onready var vida_cheia = $Camera2D/VidaCheia
+
+var vida_textures = [
+	preload("res://imagens/vida -6.png"),
+	preload("res://imagens/vida -5.png"),
+	preload("res://imagens/vida -4.png"),
+	preload("res://imagens/vida -3.png"),
+	preload("res://imagens/vida -2.png"),
+	preload("res://imagens/vida -1.png"),
+	preload("res://imagens/vida_cheia.png"),
+]
+
+
 @onready var anim  = $animacoes  
 @onready var dash_timer = $dash_timer
 @onready var dash_cooldown = $dash_cooldown
@@ -37,7 +50,7 @@ var next_direction: Vector2 = Vector2(0,1)
 # -----------------------------
 
 # --- NOVO: Variáveis de Vida do Jogador ---
-@export var max_health: float = 100.0
+@export var max_health: float = 120.0
 var current_health: float
 # ----------------------------------------
 
@@ -62,6 +75,7 @@ var combo_buffered := false
 func _ready():
 	# --- novinho em folha: inicializa a vida do jogador ---
 	current_health = max_health
+	update_health_bar()
 	# -----------------------------------------
 	
 	
@@ -76,23 +90,35 @@ func _ready():
 	# --- NOVO: Conecta o sinal de colisão para aplicar dano ---
 	if not area_attack.body_entered.is_connected(_on_area_attack_body_entered):
 		area_attack.body_entered.connect(_on_area_attack_body_entered)
-	# -----------------------------------------------------------
+
+	
 	# --- NOVO: Função para receber dano ---
 func take_damage(damage_amount: float, hit_direction: Vector2) -> void:
-	if current_state == State.DASH: # Opcional: fica invencível durante o dash
+	if current_state == State.DASH:
 		return
 
 	current_health -= damage_amount
+	current_health = clamp(current_health, 0.0, max_health)
+
 	print("Player recebeu dano de ", damage_amount, ". Vida restante: ", current_health)
-	
-	# Efeito de knockback simples
+
+	# Atualiza barra de vida
+	update_health_bar()
+
+	# Efeito de knockback
 	var knockback_force: float = 350.0
 	velocity = hit_direction * knockback_force
 
-	# Lógica de morte
 	if current_health <= 0.0:
 		die()
 
+#Função para fazer os corações da HUD
+func update_health_bar():
+	var ratio=current_health/max_health
+	var filled_heart=int(round(ratio*6))
+	filled_heart=clamp(filled_heart,0,6)
+	vida_cheia.texture=vida_textures[filled_heart]
+	
 # --- NOVO: Função de morte ---
 func die() -> void:
 	print("O jogador foi derrotado!")
