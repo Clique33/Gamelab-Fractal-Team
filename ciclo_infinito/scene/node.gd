@@ -13,5 +13,7 @@ func _process(delta: float) -> void:
 		vitoria()
 		
 func vitoria() -> void:
+	get_tree().change_scene_to_file("res://scene/Death_scree.tscn")
 	set_process(false) 
 	print("🎉 Vitória! Todos os inimigos foram derrotados!")
+	
