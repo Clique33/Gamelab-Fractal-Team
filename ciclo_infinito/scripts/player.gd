@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var vida_cheia = $Camera2D/VidaCheia
+@onready var enemies_label = $enemies
+@onready var node_principal = get_tree().root.get_node("Teste/Node")
 
 var vida_textures = [
 	preload("res://imagens/vida -6.png"),
@@ -91,7 +93,11 @@ func _ready():
 	if not area_attack.body_entered.is_connected(_on_area_attack_body_entered):
 		area_attack.body_entered.connect(_on_area_attack_body_entered)
 
-	
+func _process(delta):
+	if node_principal:
+		enemies_label.text = str(node_principal.total_inimigos, " inimigos restantes")
+		if node_principal.total_inimigos ==0:
+			get_tree().change_scene_to_file("res://vitoria.tscn")
 	# --- NOVO: Função para receber dano ---
 func take_damage(damage_amount: float, hit_direction: Vector2) -> void:
 	if current_state == State.DASH:

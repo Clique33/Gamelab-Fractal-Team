@@ -47,6 +47,3 @@ offset_right = -133.545
 offset_bottom = -102.455
 theme_override_colors/font_shadow_color = Color(0.662745, 0.027451, 0.933333, 1)
 theme_override_fonts/font = ExtResource("9_6yspw")
-text = "Inimigos mortos:"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]

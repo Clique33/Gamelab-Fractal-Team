@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b62184fnaafn3" path="res://scripts/pause.gd" id="1_snhp4"]
 
 [node name="Control" type="Control"]
+process_mode = 2
 custom_minimum_size = Vector2(640, 360)
 layout_mode = 3
 anchors_preset = 15
