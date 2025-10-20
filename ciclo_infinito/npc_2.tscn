@@ -1,0 +1,135 @@
+[gd_scene load_steps=17 format=3 uid="uid://12i1ywgpw05p"]
+
+[ext_resource type="Script" uid="uid://crikhcj4uvp0e" path="res://npc_2.gd" id="1_88fjt"]
+[ext_resource type="Texture2D" uid="uid://05mguym0tfks" path="res://assets/sprites/player/IdleMenina.png" id="2_wqxq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_decul"]
+size = Vector2(111, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkphj"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgil5"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfdlg"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fthac"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljaq5"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qvbwc"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsgks"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f34ns"]
+atlas = ExtResource("2_wqxq6")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aniso"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkphj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgil5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfdlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fthac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljaq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qvbwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsgks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f34ns")
+}],
+"loop": true,
+"name": &"IdleMenina",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oh27l"]
+bg_color = Color(0.00392157, 0, 0, 0.545098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53jpq"]
+bg_color = Color(0.233925, 0.233925, 0.233925, 0.792157)
+draw_center = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_o4hm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfyt3"]
+size = Vector2(34, 72.75)
+
+[node name="NPC2" type="StaticBody2D"]
+script = ExtResource("1_88fjt")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(24.5, 30)
+shape = SubResource("RectangleShape2D_decul")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+position = Vector2(17, 3)
+sprite_frames = SubResource("SpriteFrames_aniso")
+animation = &"IdleMenina"
+autoplay = "IdleMenina"
+frame_progress = 0.535502
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Area2D"]
+
+[node name="CaixaDeDialogo" type="Label" parent="Area2D/CanvasLayer"]
+offset_left = 68.0
+offset_top = 61.0
+offset_right = 768.0
+offset_bottom = 161.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_oh27l")
+autowrap_mode = 2
+
+[node name="TextoDialogo" type="Label" parent="Area2D/CanvasLayer"]
+offset_left = 84.0
+offset_top = 74.0
+offset_right = 751.0
+offset_bottom = 150.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_53jpq")
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Timer" type="Timer" parent="Area2D/CanvasLayer"]
+
+[node name="LabelInteraçao" type="Label" parent="Area2D"]
+offset_left = -25.0
+offset_top = -37.0
+offset_right = 35.0
+offset_bottom = -9.0
+label_settings = SubResource("LabelSettings_o4hm0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 31.375)
+shape = SubResource("RectangleShape2D_dfyt3")
+debug_color = Color(0.505315, 0.0268385, 0.069401, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
