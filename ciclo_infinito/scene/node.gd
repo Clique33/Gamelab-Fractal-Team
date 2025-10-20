@@ -1,5 +1,8 @@
 extends Node
 
+
+
+var inimigos_mortos = 0
 var total_inimigos: int = 0
 var validar_vitoria: int = 0
 

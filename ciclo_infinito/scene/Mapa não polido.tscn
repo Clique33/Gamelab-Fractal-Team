@@ -14065,6 +14065,7 @@ margins = Vector2i(0, 34)
 texture_region_size = Vector2i(32, 32)
 0:0/size_in_atlas = Vector2i(4, 4)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50.8027, -33.8684, 25.9658, -33.304, 26.5303, 35.5619, -50.8027, 34.9974)
 
 [sub_resource type="TileSet" id="TileSet_1f0id"]
 physics_layer_0/collision_layer = 1
@@ -14254,7 +14255,7 @@ tile_set = SubResource("TileSet_indl2")
 
 [node name="parede uerj" type="TileMapLayer" parent="."]
 position = Vector2(3, -12)
-tile_map_data = PackedByteArray("AAAgABMAAgABAAAAAAAaABMAAAABAAEAAAAUABMAAgABAAAAAAAOABMAAAABAAEAAAAIABMAAgABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAgABMAAgABAAAAAAAaABMAAAABAAEAAAAUABMAAgABAAAAAAAOABMAAAABAAEAAAAIABMAAgABAAAAAAADABMAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_kghne")
 
 [node name="Entrada" type="TileMapLayer" parent="."]
@@ -14288,13 +14289,13 @@ tile_map_data = PackedByteArray("AAAhAP//AAAnAAwAAAA=")
 tile_set = SubResource("TileSet_p5omj")
 
 [node name="CadeiraPreta" type="TileMapLayer" parent="."]
-scale = Vector2(0.9, 1)
-tile_map_data = PackedByteArray("AAAVAAYAAAAIABAAAAAMAAwAAAAIABAAAAAVAAwAAAAIABAAAAAQAAkAAAAIABAAAAAZAAkAAAAIABAAAAAMAAYAAAAIABAAAAA=")
+scale = Vector2(0.8, 0.8)
+tile_map_data = PackedByteArray("AAAVAAYAAAAIABAAAAAMAAwAAAAIABAAAAAVAAwAAAAIABAAAAAQAAkAAAAIABAAAAAZAAkAAAAIABAAAAAMAAYAAAAIABAAAAAdAAwAAAAIABAAAAAdAAYAAAAIABAAAAAQABAAAAAIABAAAAAZABAAAAAIABAAAAA=")
 tile_set = SubResource("TileSet_q1am4")
 
 [node name="Cadeiras" type="TileMapLayer" parent="."]
-scale = Vector2(0.9, 1)
-tile_map_data = PackedByteArray("AAAIAAgAAAANABEAAAAQAAYAAAAIAA4AAAAMAAkAAAAIAA4AAAAVAAkAAAAIAA4AAAAQAAwAAAAIAA4AAAACAAgAAAANAA4AAAAZAAwAAAAIAA4AAAAZAAYAAAAIAA4AAAA=")
+scale = Vector2(0.8, 0.8)
+tile_map_data = PackedByteArray("AAAIAAgAAAANABEAAAAQAAYAAAAIAA4AAAAMAAkAAAAIAA4AAAAVAAkAAAAIAA4AAAAQAAwAAAAIAA4AAAACAAgAAAANAA4AAAAZAAwAAAAIAA4AAAAZAAYAAAAIAA4AAAAdAAkAAAAIAA4AAAAMABAAAAAIAA4AAAAVABAAAAAIAA4AAAAdABAAAAAIAA4AAAA=")
 tile_set = SubResource("TileSet_ju5dk")
 
 [node name="Lixeira elevador" type="TileMapLayer" parent="."]

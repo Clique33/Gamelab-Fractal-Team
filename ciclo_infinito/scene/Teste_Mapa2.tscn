@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=11 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scene/node.gd" id="1_jobxa"]
-[ext_resource type="PackedScene" uid="uid://b428k5q3uu6me" path="res://slime/mob.tscn" id="2_mtgoy"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
 [ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]
 [ext_resource type="PackedScene" uid="uid://djrevjgpeak50" path="res://scene/golem_branco.tscn" id="5_0ny76"]
 [ext_resource type="PackedScene" uid="uid://c80omegwkn2ei" path="res://scene/behemot.tscn" id="5_nv5yn"]
+[ext_resource type="PackedScene" uid="uid://deyn0aff4vkxb" path="res://scene/beholder2.tscn" id="6_h1h8w"]
 [ext_resource type="PackedScene" uid="uid://dr0s7gb32d5vh" path="res://scene/golem_azul.tscn" id="6_to50h"]
+[ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://npc.tscn" id="7_6yspw"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
 
 [node name="Teste" type="Node2D"]
@@ -30,12 +31,15 @@ position = Vector2(923, 154)
 [node name="golem2" parent="Node" instance=ExtResource("5_nv5yn")]
 position = Vector2(298, 198)
 
+[node name="golem3" parent="Node" instance=ExtResource("6_h1h8w")]
+position = Vector2(1372, 384)
+
+[node name="NPC" parent="Node" instance=ExtResource("7_6yspw")]
+position = Vector2(510.9, -118)
+scale = Vector2(0.6, 0.6)
+
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 45)
-
-[node name="Mob" parent="." instance=ExtResource("2_mtgoy")]
-position = Vector2(514, 379)
-collision_layer = 4
 
 [node name="player" parent="." instance=ExtResource("3_m560e")]
 position = Vector2(574, -278)
