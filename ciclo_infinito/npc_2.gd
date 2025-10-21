@@ -20,8 +20,8 @@ var fala_index = 0
 #
 
 
-var falas = ["Escrever um blá, blá , bla´, aqui." , "Se quiser, pode escrever mais um blá blá blá aqui também."
-, "Ou pode apenas apagar todas as linhas e deixar apenas uma, mas não se esqueça de por a vírgula depois das aspas a cada frase."
+var falas = ["Você já segue a página do SPUUD?" , "Lá você consegue achar a gatinha que tanto procura rsrs"
+, "Ou também pode me passar o seu número rs"
 ]
 
 # --- Variáveis de Patrulha ---

@@ -16,7 +16,7 @@ var falando = false
 var pode_avancar = false
 var fala_index = 0
 
-var falas = ["MIMIIMIMI."
+var falas = ["Oi! Eu sou a Maria! Você é um calouro de engenharia?"
 ]
 
 # --- Variáveis de Patrulha ---

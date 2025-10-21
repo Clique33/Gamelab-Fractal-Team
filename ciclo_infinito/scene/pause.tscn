@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b62184fnaafn3" path="res://scripts/pause.gd" id="1_snhp4"]
 
 [node name="Control" type="Control"]
+process_mode = 2
 custom_minimum_size = Vector2(640, 360)
 layout_mode = 3
 anchors_preset = 15
@@ -15,6 +16,7 @@ size_flags_vertical = 3
 script = ExtResource("1_snhp4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(640, 360)
 layout_mode = 1
 anchors_preset = 15
@@ -85,3 +87,9 @@ text = "Tela cheia"
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/MenuOpcoes"]
 layout_mode = 2
 text = "Voltar"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuPrincipal/resumebutton" to="." method="_on_resumebutton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuPrincipal/optionsbutton" to="." method="_on_optionsbutton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuPrincipal/quitbutton" to="." method="_on_quitbutton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuOpcoes/FullScreenButton" to="." method="_on_full_screen_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuOpcoes/BackButton" to="." method="_on_backbutton_pressed"]

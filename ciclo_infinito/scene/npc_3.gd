@@ -10,7 +10,10 @@ var falando = false
 var pode_avancar = false
 var fala_index = 0
 
-var falas = ["O Arthur está usando muito o chicote que lhe foi dado." 
+var falas = ["Olá, você deve ser o Arthur pica de mel, certo?", 
+"Agora que você chegou na UERJ, pegue o elevador no Hall do Queijo e suba até o 5° andar",
+"Lá você deve encontrar o veterano Pedro!",
+"Ele deve te ajudar com os próximos passos aqui na UERJ." 
 ]
 
 func _ready() -> void:
@@ -59,22 +62,8 @@ func encerrar_dialogo():
 	pode_avancar = false
 	caixa_de_dialogo.visible = false
 	texto_dialogo.visible = false
-
-
-#func _on_body_entered(body: Node2D) -> void:
-	#if body.name == "player":
-		#player_in_area = true
-		#label_interação.text = "Pressione 'E' para interagir"
-		#label_interação.visible = true
-		
-
-#func _on_body_exited(body: Node2D) -> void:
-	#if body.name == "player":
-		#player_in_area = false
-		#label_interação.visible = false
-		#if falando:
-			#encerrar_dialogo()
-		
+	var terrain_manager = get_tree().get_current_scene()
+	terrain_manager.atualizar_missao("Missão: \nEntre no elevador \ne suba até o 5° andar.")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "player":

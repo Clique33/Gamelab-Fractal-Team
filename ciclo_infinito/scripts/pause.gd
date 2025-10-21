@@ -6,9 +6,9 @@ extends Control
 
 @onready var menu_principal = $MarginContainer/VBoxContainer/MenuPrincipal
 @onready var menu_opcoes = $MarginContainer/VBoxContainer/MenuOpcoes
-@onready var volume_slider = $MarginContainer/VBoxContainer/MenuOpcoes/HBoxContainer/VolumeSlider
-@onready var fullscreen_button = $MarginContainer/VBoxContainer/MenuOpcoes/VBoxContainer/FullScreenButton
-@onready var back_button = $MarginContainer/VBoxContainer/MenuOpcoes/VBoxContainer/BackButton
+@onready var volume_slider = $MarginContainer/VBoxContainer/MenuOpcoes/HBoxContainer/Label/VolumeSlider
+@onready var fullscreen_button = $MarginContainer/VBoxContainer/MenuOpcoes/FullScreenButton
+@onready var back_button = $MarginContainer/VBoxContainer/MenuOpcoes/BackButton
 
 func _ready():
 	menu_principal.show()
@@ -35,10 +35,6 @@ func _on_optionsbutton_pressed():
 	menu_principal.hide()
 	menu_opcoes.show()
 
-func _on_backbutton_pressed():
-	menu_opcoes.hide()
-	menu_principal.show()
-
 func _on_quitbutton_pressed():
 	get_tree().change_scene_to_file("res://scene/MainMenu.tscn")
 
@@ -50,3 +46,8 @@ func _on_fullscreenbutton_pressed():
 
 func _on_volume_changed(value: float):
 	AudioServer.set_bus_volume_db(0, value)
+
+func _on_backbutton_pressed() -> void:
+	menu_opcoes.hide()
+	menu_principal.show()
+	pass
