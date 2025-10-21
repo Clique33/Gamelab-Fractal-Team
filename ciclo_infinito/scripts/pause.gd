@@ -13,15 +13,6 @@ extends Control
 func _ready():
 	menu_principal.show()
 	menu_opcoes.hide()
-
-	resume_button.pressed.connect(_on_resumebutton_pressed)
-	options_button.pressed.connect(_on_optionsbutton_pressed)
-	quit_button.pressed.connect(_on_quitbutton_pressed)
-
-	fullscreen_button.pressed.connect(_on_fullscreenbutton_pressed)
-	back_button.pressed.connect(_on_backbutton_pressed)
-	volume_slider.value_changed.connect(_on_volume_changed)
-
 	volume_slider.min_value = -80.0
 	volume_slider.max_value = 0.0
 	volume_slider.step = 0.5
@@ -30,23 +21,18 @@ func _ready():
 func _on_resumebutton_pressed():
 	get_tree().paused = false
 	hide()
-
 func _on_optionsbutton_pressed():
 	menu_principal.hide()
 	menu_opcoes.show()
-
 func _on_quitbutton_pressed():
 	get_tree().change_scene_to_file("res://scene/MainMenu.tscn")
-
 func _on_fullscreenbutton_pressed():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-
 func _on_volume_changed(value: float):
 	AudioServer.set_bus_volume_db(0, value)
-
 func _on_backbutton_pressed() -> void:
 	menu_opcoes.hide()
 	menu_principal.show()

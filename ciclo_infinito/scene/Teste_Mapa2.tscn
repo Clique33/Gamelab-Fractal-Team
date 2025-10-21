@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=15 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scene/node.gd" id="1_jobxa"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
 [ext_resource type="AudioStream" uid="uid://ce378hasf2vjm" path="res://assets/musica/Hades - God of the Dead - Supergiant Games (youtube).mp3" id="11_n1k66"]
 [ext_resource type="PackedScene" uid="uid://bw0i1wy6c26yp" path="res://scene/pause.tscn" id="13_lo0pi"]
+[ext_resource type="Texture2D" uid="uid://djobcv11wiaxa" path="res://imagens/MISSOES_EM_ANDAMENTO.png" id="13_ysv2v"]
 
 [node name="Teste" type="Node2D"]
 script = ExtResource("1_tlrdx")
@@ -77,31 +78,29 @@ theme_override_colors/font_shadow_color = Color(0.662745, 0.027451, 0.933333, 1)
 theme_override_fonts/font = ExtResource("9_6yspw")
 text = "Inimigos mortos:"
 
-[node name="ColorRect" type="ColorRect" parent="player"]
-offset_left = 116.364
-offset_top = -135.455
-offset_right = 156.364
-offset_bottom = -95.4545
-scale = Vector2(3.75001, 2.61662)
-color = Color(0.460234, 0.229614, 0.59375, 0.584314)
+[node name="TextureRect" type="TextureRect" parent="player"]
+offset_left = 120.909
+offset_top = -153.636
+offset_right = 654.909
+offset_bottom = 131.364
+scale = Vector2(0.284224, 0.275615)
+texture = ExtResource("13_ysv2v")
+expand_mode = 1
 
-[node name="Label" type="Label" parent="player/ColorRect"]
+[node name="Label" type="Label" parent="player/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -19.7334
-offset_top = -4.71307
-offset_right = 98.2666
-offset_bottom = 18.2869
+offset_left = -213.0
+offset_top = -46.5
+offset_right = 32.0
+offset_bottom = 104.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.336476, 0.392278)
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 1
-vertical_alignment = 1
+scale = Vector2(1.74863, 0.959864)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_n1k66")

@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://downt2rxxaqaf"]
+[gd_scene load_steps=10 format=3 uid="uid://downt2rxxaqaf"]
 
 [ext_resource type="VideoStream" uid="uid://dd5i5u620cgsv" path="res://assets/video/MENU.ogv" id="1_tf3dk"]
 [ext_resource type="Script" uid="uid://biduen4m26mw5" path="res://main_menu.gd" id="2_rvc10"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="3_cqjrg"]
 [ext_resource type="Texture2D" uid="uid://cutt1kh3xr6q" path="res://imagens/logo-discord-1024.png" id="4_e2xy7"]
 [ext_resource type="AudioStream" uid="uid://c8ag6husw1v2" path="res://assets/musica/Metal Hellsinger — The Hellsinger (Main Theme) - Piece Of Lembas (youtube).mp3" id="7_85i58"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf3dk"]
+bg_color = Color(0.466667, 0.00784314, 0.917647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvc10"]
+bg_color = Color(0.466667, 0.00784314, 0.917647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85i58"]
+bg_color = Color(0.466667, 0.00784314, 0.917647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4ih2"]
+bg_color = Color(0.466667, 0.00784314, 0.917647, 1)
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer"]
 anchors_preset = 15
@@ -40,10 +52,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.768627, 0.721569, 0.615686, 1)
+theme_override_colors/font_color = Color(0.945098, 0.890196, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_cqjrg")
 theme_override_font_sizes/font_size = 46
+theme_override_styles/hover = SubResource("StyleBoxFlat_tf3dk")
 text = "Jogar"
 language = "pt"
 
@@ -52,10 +65,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.768627, 0.721569, 0.615686, 1)
+theme_override_colors/font_color = Color(0.945098, 0.890196, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_cqjrg")
 theme_override_font_sizes/font_size = 46
+theme_override_styles/hover = SubResource("StyleBoxFlat_rvc10")
 text = "Opções"
 
 [node name="Creditos_button" type="Button" parent="VBoxContainer"]
@@ -63,10 +77,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.768627, 0.721569, 0.615686, 1)
+theme_override_colors/font_color = Color(0.945098, 0.890196, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_cqjrg")
 theme_override_font_sizes/font_size = 46
+theme_override_styles/hover = SubResource("StyleBoxFlat_85i58")
 text = "Créditos"
 
 [node name="Sair_Button" type="Button" parent="VBoxContainer"]
@@ -74,10 +89,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.768627, 0.721569, 0.615686, 1)
+theme_override_colors/font_color = Color(0.945098, 0.890196, 1, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_cqjrg")
 theme_override_font_sizes/font_size = 46
+theme_override_styles/hover = SubResource("StyleBoxFlat_q4ih2")
 text = "Sair
 "
 
