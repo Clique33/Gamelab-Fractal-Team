@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=12 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scene/node.gd" id="1_jobxa"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dr0s7gb32d5vh" path="res://scene/golem_azul.tscn" id="6_to50h"]
 [ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://scene/npc.tscn" id="7_6yspw"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
+[ext_resource type="AudioStream" uid="uid://ce378hasf2vjm" path="res://assets/musica/Hades - God of the Dead - Supergiant Games (youtube).mp3" id="11_n1k66"]
 
 [node name="Teste" type="Node2D"]
 
@@ -55,3 +56,8 @@ theme_override_fonts/font = ExtResource("9_6yspw")
 text = "Inimigos mortos:"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_n1k66")
+volume_db = -19.299
+autoplay = true

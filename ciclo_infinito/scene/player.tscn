@@ -1,4 +1,4 @@
-[gd_scene load_steps=212 format=3 uid="uid://3qoae7f6uh8o"]
+[gd_scene load_steps=214 format=3 uid="uid://3qoae7f6uh8o"]
 
 [ext_resource type="Script" uid="uid://dbg05n786rg21" path="res://scripts/player.gd" id="1_34jf3"]
 [ext_resource type="Texture2D" uid="uid://baw5eohono6a1" path="res://assets/sprites/player/ATTACK 1/attack1_left.png" id="2_4ja17"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://bj1bil1ukckhf" path="res://assets/sprites/player/DEATH/death_right.png" id="16_xsw3c"]
 [ext_resource type="Texture2D" uid="uid://b0404jgjug2i6" path="res://assets/sprites/player/DEATH/death_up.png" id="17_l1uwf"]
 [ext_resource type="Texture2D" uid="uid://c82joy0gpepr5" path="res://imagens/vida -3.png" id="27_l1uwf"]
+[ext_resource type="AudioStream" uid="uid://cp7fioxmu2oda" path="res://assets/sons/rpg-sword-attack-combo-6-388919 (1).mp3" id="27_xsw3c"]
+[ext_resource type="AudioStream" uid="uid://bccw64i2jy4xe" path="res://assets/sons/rpg-sword-attack-combo-17-388929.mp3" id="28_l1uwf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_govaw"]
 atlas = ExtResource("5_iuf2t")
@@ -1478,6 +1480,16 @@ zoom = Vector2(1.6, 1.6)
 position = Vector2(-201.352, -135.455)
 scale = Vector2(0.112718, 0.113636)
 texture = ExtResource("27_l1uwf")
+
+[node name="attack_sfxplay" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_xsw3c")
+volume_db = -19.858
+pitch_scale = 1.19
+mix_target = 1
+
+[node name="dash_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_l1uwf")
+volume_db = -34.668
 
 [connection signal="animation_finished" from="animacoes" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]

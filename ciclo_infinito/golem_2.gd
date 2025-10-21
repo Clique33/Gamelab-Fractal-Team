@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var move_speed: float = 100.0
 @export var accel: float = 0.18
 @export var stop_distance: float = 40.0
-
+@onready var attack_sfx: AudioStreamPlayer = $attack_sfx
 @export_category("Combat")
 @export var attack_damage: float = 15.0
 @export var attack_cooldown: float = 1.5

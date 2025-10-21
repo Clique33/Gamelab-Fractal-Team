@@ -1,63 +1,12 @@
-[gd_scene load_steps=33 format=3 uid="uid://deyn0aff4vkxb"]
+[gd_scene load_steps=32 format=3 uid="uid://deyn0aff4vkxb"]
 
 [ext_resource type="Script" uid="uid://cwb32k80tgxq7" path="res://scripts/golem.gd" id="1_2j4bn"]
-[ext_resource type="Texture2D" uid="uid://cf5ullo2tpjcs" path="res://assets/sprites/enemies/PNG/Golem1/Idle/Golem1_Idle_full.png" id="2_71ypx"]
 [ext_resource type="Texture2D" uid="uid://bybr7omrihpw1" path="res://assets/sprites/enemies/PNG/Beholder2/Attack/Beholder2_Attack_full.png" id="3_2j4bn"]
 [ext_resource type="Texture2D" uid="uid://djtpyjtxvh75n" path="res://assets/sprites/enemies/PNG/Beholder2/Death/Beholder2_Death_full.png" id="4_71ypx"]
 [ext_resource type="Texture2D" uid="uid://bgn3gj8ixtee0" path="res://assets/sprites/enemies/PNG/Beholder2/Hurt/Beholder2_Hurt_full.png" id="5_igtpg"]
 [ext_resource type="Texture2D" uid="uid://ddjxbpme3sv4a" path="res://assets/sprites/enemies/PNG/Beholder2/Idle/Beholder2_Idle_full.png" id="6_2b4qx"]
+[ext_resource type="AudioStream" uid="uid://cx441vlb2nbup" path="res://assets/sons/laser-351683.mp3" id="7_2j4bn"]
 [ext_resource type="Texture2D" uid="uid://daxnl8u6qljd7" path="res://assets/sprites/enemies/PNG/Beholder2/Walk/Beholder2_Walk_full.png" id="7_j6kva"]
-
-[sub_resource type="Animation" id="Animation_m1c6a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [4]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("texture:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [ExtResource("2_71ypx")]
-}
 
 [sub_resource type="Animation" id="Animation_8ihwp"]
 resource_name = "attack_down"
@@ -1113,7 +1062,6 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0g2he"]
 _data = {
-&"RESET": SubResource("Animation_m1c6a"),
 &"attack_down": SubResource("Animation_8ihwp"),
 &"attack_left": SubResource("Animation_2mppa"),
 &"attack_right": SubResource("Animation_5krk2"),
@@ -1151,8 +1099,8 @@ collision_mask = 3
 script = ExtResource("1_2j4bn")
 
 [node name="texture" type="Sprite2D" parent="."]
-texture = ExtResource("2_71ypx")
-hframes = 4
+texture = ExtResource("3_2j4bn")
+hframes = 12
 vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1182,6 +1130,10 @@ debug_color = Color(0.95932, 0.105688, 0.437158, 0.42)
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 1.5
+
+[node name="attack_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2j4bn")
+volume_db = -6.308
 
 [connection signal="body_entered" from="detectionarea" to="." method="_on_detectionarea_body_entered"]
 [connection signal="body_exited" from="detectionarea" to="." method="_on_detectionarea_body_exited"]

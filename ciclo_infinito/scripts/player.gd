@@ -18,6 +18,7 @@ var vida_textures = [
 @onready var dash_cooldown = $dash_cooldown
 @export var dash_duracao  = 0.2
 @onready var area_attack = $attack_area
+@onready var dash_sfx = $dash_sfx
 
 
 var last_facing: String = "down"
@@ -43,6 +44,7 @@ var next_direction: Vector2 = Vector2(0,1)
 @export var hit2_active_time := 0.14
 @export var combo_window := 0.20
 @export var attack_cooldown := 0.15
+@onready var attack_sfxplay: AudioStreamPlayer = $attack_sfxplay
 
 # --- NOVO: Variáveis de Dano ---
 @export var attack1_damage: float = 10.0 # Dano do primeiro golpe
@@ -165,6 +167,7 @@ func _idle_state() -> void:
 
 func _run_state(_delta: float) :    
 	var input_direction: Vector2 = get_input_direction()
+	
 	if Input.is_action_just_pressed("attack"):
 		if can_start_attack():
 			_start_attack1()
@@ -190,6 +193,7 @@ func _attack_state():
 
 
 func _dash_state():
+	dash_sfx.play()
 	if dash_timer.is_stopped():
 		dash_timer.start()
 		var dash_direction: Vector2 = next_direction
@@ -250,6 +254,7 @@ func _start_attack1() -> void: # Inicia a animação do ataque 1 e ajusta as var
 	var a := "attack1_" + attack_facing
 	if anim.animation != a:
 		anim.stop(); anim.frame = 0; anim.play(a)
+		attack_sfxplay.play()
 
 	_open_combo_window()
 	_end_attack1_after_lock()
@@ -274,6 +279,7 @@ func _start_attack2() -> void: # Mesma lógica do ataque 1
 
 	var a := "attack2_" + attack_facing
 	if anim.animation != a:
+		attack_sfxplay.play()
 		anim.stop(); anim.frame = 0; anim.play(a)
 
 	await get_tree().create_timer(attack2_lock_time).timeout

@@ -8,6 +8,7 @@ signal golem_defeated # <-- ADICIONE ESTA LINHA
 @export_category("objects")
 @export var sprite: Sprite2D = null
 @export var anim: AnimationPlayer = null
+@onready var attack_sfx: AudioStreamPlayer = $attack_sfx
 
 @export_category("Movement")
 @export var move_speed: float = 100.0
@@ -99,6 +100,7 @@ func attack() -> void:
 		if a:
 			a.loop_mode = Animation.LOOP_NONE
 	_play_anim(atk_name)
+	attack_sfx.play()
 	print("Golem ataca!")
 
 # Aplica o dano apenas no final da animação de ataque
