@@ -1134,7 +1134,6 @@ wait_time = 1.5
 [node name="attack_sfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_di7da")
 volume_db = -6.438
-stream_paused = true
 
 [connection signal="body_entered" from="detectionarea" to="." method="_on_detectionarea_body_entered"]
 [connection signal="body_exited" from="detectionarea" to="." method="_on_detectionarea_body_exited"]
