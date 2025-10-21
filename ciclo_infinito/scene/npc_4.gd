@@ -4,10 +4,10 @@ extends CharacterBody2D
 # CUIDADO AQUI: Ajuste estes caminhos se sua cena for diferente!
 @onready var caixa_de_dialogo: Label = $Area2D/CanvasLayer/CaixaDeDialogo
 @onready var texto_dialogo: Label = $Area2D/CanvasLayer/TextoDialogo
-@onready var label_interação: Label = $"Area2D/LabelInteraçao" 
+@onready var label_interação: Label = $"Area2D/LabelInteração" # Ou talvez $Area2D/LabelInteraçao ? Verifique sua cena.
 
 # --- Variáveis do NPC ---
-@onready var sprite: AnimatedSprite2D =  $Area2D/Sprite # 
+@onready var sprite: AnimatedSprite2D =  $Area2D/Sprite 
 @onready var ponto_patrulha_a: Marker2D = $PontoPatrulhaA
 @onready var ponto_patrulha_b: Marker2D = $PontoPatrulhaB
 
@@ -16,12 +16,7 @@ var falando = false
 var pode_avancar = false
 var fala_index = 0
 
-
-#
-
-
-var falas = ["Escrever um blá, blá , bla´, aqui." , "Se quiser, pode escrever mais um blá blá blá aqui também."
-, "Ou pode apenas apagar todas as linhas e deixar apenas uma, mas não se esqueça de por a vírgula depois das aspas a cada frase."
+var falas = ["MIMIIMIMI."
 ]
 
 # --- Variáveis de Patrulha ---
