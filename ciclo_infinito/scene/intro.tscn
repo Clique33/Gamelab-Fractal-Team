@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7we5him3a8jm"]
+
+[ext_resource type="VideoStream" uid="uid://x51wq0ww64ld" path="res://assets/video/MENU.ogv" id="1_dlfbb"]
+
+[node name="Intro" type="VideoStreamPlayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_dlfbb")
+autoplay = true
