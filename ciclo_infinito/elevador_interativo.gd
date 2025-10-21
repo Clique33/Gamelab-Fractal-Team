@@ -11,14 +11,14 @@ func _ready() -> void:
 
 func _process(delta) -> void:
 	if player_in_area and Input.is_action_just_pressed("interact"):
+		var terrain_manager = get_tree().get_current_scene()
+		terrain_manager.atualizar_missao("Missão: \nFale com o Pedro.")
 		mudar_de_cena()
 
 func mudar_de_cena():
 	if target_scene == null:
 		print("ERRO: A cena de destino (Target Scene) não foi definida no inspetor!")
 		return
-	var terrain_manager = get_tree().get_current_scene()
-	terrain_manager.atualizar_missao("Missão: \nFale com o Pedro.")
 	get_tree().change_scene_to_packed(target_scene)
 
 func _on_body_entered(body: Node2D) -> void:
@@ -37,3 +37,4 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		player_in_area = false
 		label_interação.visible = false
+	

@@ -2,14 +2,18 @@ extends Node2D
 
 @onready var pause_menu = $player/pause
 @onready var mission_label = $CanvasLayer/ColorRect/Label
+var missoes = [
+	"Missao:\nFale com o José\nproximo aos elevadores\ndo Hall do Queijo",
+	"Missao:\nEntre no elevador",
+	"Missao:\nFale com o Pedro",
+	"Missao:\nMate os monstros"
+]
+var indice_missao_atual = 0
 
 func _ready():
 	await get_tree().process_frame
 	pause_menu.hide()
-	if mission_label:
-		mission_label.text = "Missão: \nFale com José 
-		próximo aos elevadores
-		no Hall do Queijo"
+	_atualizar_texto_missao()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -25,6 +29,17 @@ func _pause_game():
 func _resume_game():
 	get_tree().paused = false
 	pause_menu.hide()
-
-func atualizar_missao(novo_texto: String):
-	mission_label.text = novo_texto
+func _atualizar_texto_missao():
+	if mission_label and indice_missao_atual < missoes.size():
+		mission_label.text = "Missão: " + missoes[indice_missao_atual]
+	else:
+		mission_label.text = "Todas as missões concluídas!"
+func proxima_missao():
+	if indice_missao_atual < missoes.size() - 1:
+		indice_missao_atual += 1
+		_atualizar_texto_missao()
+	else:
+		print("🎉 Todas as missões foram completadas!")
+func resetar_missoes():
+	indice_missao_atual = 0
+	_atualizar_texto_missao()

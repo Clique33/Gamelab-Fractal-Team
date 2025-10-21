@@ -78,4 +78,3 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		label_interação.visible = false
 		if falando:
 			encerrar_dialogo()
-		
