@@ -4,7 +4,7 @@ extends StaticBody2D
 @onready var texto_dialogo: Label = $Area2D/CanvasLayer/TextoDialogo
 @onready var label_interação: Label = $Area2D/LabelInteração
 
-
+signal falou_com_jose
 var player_in_area = false
 var falando = false
 var pode_avancar = false
@@ -25,6 +25,7 @@ func _ready() -> void:
 func _process(delta) -> void:
 	if player_in_area and not falando and Input.is_action_just_pressed("interact"):
 		iniciar_dialogo()
+		
 	elif falando and pode_avancar and Input.is_action_just_pressed("interact"):
 		proxima_fala()
 
@@ -62,6 +63,7 @@ func encerrar_dialogo():
 	pode_avancar = false
 	caixa_de_dialogo.visible = false
 	texto_dialogo.visible = false
+	emit_signal("falou_com_jose")
 	var terrain_manager = get_tree().get_current_scene()
 	terrain_manager.atualizar_missao("Missão: \nEntre no elevador \ne suba até o 5° andar.")
 
@@ -78,3 +80,4 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		label_interação.visible = false
 		if falando:
 			encerrar_dialogo()
+		

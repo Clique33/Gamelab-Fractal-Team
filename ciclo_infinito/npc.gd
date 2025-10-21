@@ -60,8 +60,22 @@ func encerrar_dialogo():
 	pode_avancar = false
 	caixa_de_dialogo.visible = false
 	texto_dialogo.visible = false
-	var terrain_manager = get_tree().get_current_scene()
-	terrain_manager.atualizar_missao("Missão: \n")
+
+
+#func _on_body_entered(body: Node2D) -> void:
+	#if body.name == "player":
+		#player_in_area = true
+		#label_interação.text = "Pressione 'E' para interagir"
+		#label_interação.visible = true
+		
+
+#func _on_body_exited(body: Node2D) -> void:
+	#if body.name == "player":
+		#player_in_area = false
+		#label_interação.visible = false
+		#if falando:
+			#encerrar_dialogo()
+		
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "player":
