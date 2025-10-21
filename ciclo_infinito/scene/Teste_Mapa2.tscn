@@ -35,12 +35,12 @@ position = Vector2(298, 198)
 [node name="golem3" parent="Node" instance=ExtResource("6_h1h8w")]
 position = Vector2(1372, 384)
 
-[node name="NPC" parent="Node" instance=ExtResource("7_6yspw")]
-position = Vector2(510.9, -118)
-scale = Vector2(0.6, 0.6)
-
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 45)
+
+[node name="NPC" parent="." instance=ExtResource("7_6yspw")]
+position = Vector2(510.9, -118)
+scale = Vector2(0.6, 0.6)
 
 [node name="player" parent="." instance=ExtResource("3_m560e")]
 position = Vector2(574, -278)
