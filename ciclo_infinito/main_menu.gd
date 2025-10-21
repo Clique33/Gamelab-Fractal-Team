@@ -1,6 +1,7 @@
 extends VideoStreamPlayer
 
-func _ready() -> void:
+
+	
 	
 
 func _on_jogar_button_pressed() -> void:

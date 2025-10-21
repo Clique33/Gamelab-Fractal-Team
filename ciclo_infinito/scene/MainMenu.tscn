@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://biduen4m26mw5" path="res://main_menu.gd" id="2_rvc10"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="3_cqjrg"]
 [ext_resource type="Texture2D" uid="uid://cutt1kh3xr6q" path="res://imagens/logo-discord-1024.png" id="4_e2xy7"]
-[ext_resource type="AudioStream" uid="uid://c8ag6husw1v2" path="res://assets/musica/Metal Hellsinger — The Hellsinger (Main Theme) - Piece Of Lembas (youtube).mp3" id="7_85i58"]
+[ext_resource type="AudioStream" uid="uid://d34npikhkd0oe" path="res://assets/musica/MÚSICA MENU.mp3" id="5_tf3dk"]
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer"]
 anchors_preset = 15
@@ -92,7 +92,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_85i58")
+stream = ExtResource("5_tf3dk")
 autoplay = true
 attenuation = 0.784584
 
