@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://bgv1wic2ps8oa"]
+[gd_scene load_steps=53 format=4 uid="uid://bgv1wic2ps8oa"]
 
 [ext_resource type="Texture2D" uid="uid://cdawsav4cfe3r" path="res://assets/sprites/CortesDoMapa/mapa fractal.png" id="1_b5055"]
 [ext_resource type="Script" uid="uid://dubc07juagfnk" path="res://hall_do_queijo.gd" id="1_dw1uh"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cerom0ls1c2wk" path="res://scene/npc_3.tscn" id="10_p3xb5"]
 [ext_resource type="PackedScene" uid="uid://c8528aoh54ot1" path="res://scene/npc_4.tscn" id="11_td228"]
 [ext_resource type="PackedScene" uid="uid://bw0i1wy6c26yp" path="res://scene/pause.tscn" id="13_v1y88"]
+[ext_resource type="Texture2D" uid="uid://djobcv11wiaxa" path="res://imagens/MISSOES_EM_ANDAMENTO.png" id="14_v1y88"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_inj64"]
 texture = ExtResource("1_h2ksd")
@@ -396,28 +397,25 @@ text = "Maria"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = 757.0
-offset_top = 62.0
-offset_right = 797.0
-offset_bottom = 102.0
-scale = Vector2(3.75001, 2.61662)
-color = Color(0.460234, 0.229614, 0.59375, 0.584314)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 682.0
+offset_top = 3.0
+offset_right = 1657.0
+offset_bottom = 546.0
+scale = Vector2(0.284224, 0.275615)
+texture = ExtResource("14_v1y88")
 
-[node name="Label" type="Label" parent="CanvasLayer/ColorRect"]
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -19.7334
-offset_top = 2.93039
-offset_right = 98.2666
-offset_bottom = 25.9304
+offset_left = -388.986
+offset_top = -68.3178
+offset_right = -89.9862
+offset_bottom = 56.6823
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.336476, 0.392278)
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 1
-vertical_alignment = 1
+scale = Vector2(2.62175, 1.76895)
