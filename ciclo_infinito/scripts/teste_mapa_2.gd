@@ -7,7 +7,8 @@ var missoes = [
 	"Fale com José próximo aos elevadores no Hall do Queijo",
 	"Entre no elevador e suba até o 5° andar",
 	"Fale com o Pedro no 5° andar",
-	"Mate os monstros que aparecerem"
+	"Mate os monstros que aparecerem",
+	"Fale com o Pedro"
 ]
 
 var indice_missao_atual = 2 
@@ -40,10 +41,11 @@ func _atualizar_texto_missao():
 		mission_label.text = missoes[indice_missao_atual]
 	else:
 		mission_label.text = "Todas as missões concluídas!"
+		get_tree().change_scene_to_file("res://scene/vitoria.tscn")
+		
 func proxima_missao():
-	if indice_missao_atual < missoes.size() - 1:
-		indice_missao_atual += 1
-		_atualizar_texto_missao()
+	indice_missao_atual += 1
+	_atualizar_texto_missao()
 func conectar_sinais():
 	var npc = $NPC
 	if npc:
