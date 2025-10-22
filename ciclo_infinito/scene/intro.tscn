@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bvapan1pwj3pn"]
 
 [ext_resource type="VideoStream" uid="uid://cw48j0rumidr3" path="res://assets/video/INTRO-LOGOS V2.ogv" id="1_dlfbb"]
-[ext_resource type="Script" path="res://scene/intro.gd" id="2_yv8ol"]
+[ext_resource type="Script" uid="uid://c6uhkws1p4823" path="res://scene/intro.gd" id="2_yv8ol"]
 
 [node name="Intro" type="VideoStreamPlayer"]
 anchors_preset = 15

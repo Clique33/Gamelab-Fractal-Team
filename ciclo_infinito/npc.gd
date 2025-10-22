@@ -3,7 +3,7 @@ extends StaticBody2D
 @onready var caixa_de_dialogo: Label = $Area2D/CanvasLayer/CaixaDeDialogo
 @onready var texto_dialogo: Label = $Area2D/CanvasLayer/TextoDialogo
 @onready var label_interação: Label = $Area2D/LabelInteração
-
+signal dialogo_concluido
 signal falou_com_pedro
 
 var player_in_area = false
@@ -49,6 +49,7 @@ func encerrar_dialogo():
 	pode_avancar = false
 	caixa_de_dialogo.visible = false
 	texto_dialogo.visible = false
+	emit_signal("dialogo_concluido")
 	emit_signal("falou_com_pedro")  # Emite sinal para avançar missão
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "player":
