@@ -29,8 +29,6 @@ label_contador = NodePath("../player/enemies")
 [node name="golem_azul6" parent="Node" instance=ExtResource("6_to50h")]
 position = Vector2(730, 344)
 
-[node name="golem_azul" parent="Node/golem_azul6" instance=ExtResource("6_to50h")]
-
 [node name="golem_azul" parent="Node" instance=ExtResource("6_to50h")]
 position = Vector2(1327, 623)
 
@@ -93,6 +91,9 @@ position = Vector2(362, 420)
 
 [node name="golem12" parent="Node" instance=ExtResource("5_j818a")]
 position = Vector2(204, 407)
+
+[node name="golem_azul7" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(730, 344)
 
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 45)
