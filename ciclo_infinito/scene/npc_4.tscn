@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://c8528aoh54ot1"]
 
-[ext_resource type="Script" uid="uid://cxsud87xx3vbj" path="res://scripts/npc_4.gd" id="1_lm4ag"]
+[ext_resource type="Script" uid="uid://cxsud87xx3vbj" path="res://scene/npc_4.gd" id="1_lm4ag"]
 [ext_resource type="Texture2D" uid="uid://2y8phasy63w" path="res://assets/sprites/player/WalkSaia.png" id="2_lm4ag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjdye"]

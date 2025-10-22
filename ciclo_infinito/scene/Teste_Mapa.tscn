@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://din2a6ejyj2k1"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
-[ext_resource type="Script" uid="uid://dvph2fq3w1spk" path="res://scripts/teste_mapa.gd" id="1_dncqo"]
+[ext_resource type="Script" uid="uid://dvph2fq3w1spk" path="res://scene/teste_mapa.gd" id="1_dncqo"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
 [ext_resource type="AudioStream" uid="uid://ce378hasf2vjm" path="res://assets/musica/Hades - God of the Dead - Supergiant Games (youtube).mp3" id="4_m560e"]
 [ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]

@@ -7,8 +7,7 @@ var missoes = [
 	"Fale com José próximo aos elevadores no Hall do Queijo",
 	"Entre no elevador e suba até o 5° andar",
 	"Fale com o Pedro no 5° andar",
-	"Mate as almas presas",
-	"Fale com o Pedro"
+	"Mate os monstros que aparecerem"
 ]
 
 var indice_missao_atual = 0

@@ -27,10 +27,8 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_iu1fh")
-theme_override_font_sizes/font_size = 50
-text = "demo concluída
-por favor, dê o seu feedback"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 200
+text = "VITÓRIA"
 
 [node name="jogar_novamente_button" type="Button" parent="."]
 anchors_preset = 7

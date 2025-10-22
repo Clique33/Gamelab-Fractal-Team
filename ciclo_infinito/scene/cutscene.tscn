@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b21qcqu4g18ab"]
 
 [ext_resource type="VideoStream" uid="uid://v74o4bua43da" path="res://assets/video/intro-ciclo-infinito.ogv" id="1_drs7p"]
-[ext_resource type="Script" uid="uid://du102pklt6jw1" path="res://scripts/cutscene.gd" id="2_1lj4p"]
+[ext_resource type="Script" uid="uid://du102pklt6jw1" path="res://scene/cutscene.gd" id="2_1lj4p"]
 
 [node name="Cutscene" type="VideoStreamPlayer"]
 layout_direction = 1

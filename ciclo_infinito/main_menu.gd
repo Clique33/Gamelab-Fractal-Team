@@ -1,7 +1,11 @@
-extends TextureRect
+extends VideoStreamPlayer
+
+
+	
+	
 
 func _on_jogar_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scene/HallDoQueijo.tscn")
+	get_tree().change_scene_to_file("res://scene/cutscene.tscn")
 	pass
 	
 func _on_creditos_button_pressed() -> void:
