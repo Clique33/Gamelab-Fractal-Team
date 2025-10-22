@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://12i1ywgpw05p"]
 
-[ext_resource type="Script" uid="uid://crikhcj4uvp0e" path="res://npc_2.gd" id="1_88fjt"]
+[ext_resource type="Script" uid="uid://crikhcj4uvp0e" path="res://scripts/npc_2.gd" id="1_88fjt"]
 [ext_resource type="Texture2D" uid="uid://cw5k3pfja14yo" path="res://assets/sprites/player/WalkMenina.png" id="2_05tp0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqc52"]
