@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=4 uid="uid://bgv1wic2ps8oa"]
 
 [ext_resource type="Texture2D" uid="uid://cdawsav4cfe3r" path="res://assets/sprites/CortesDoMapa/mapa fractal.png" id="1_b5055"]
-[ext_resource type="Script" uid="uid://rckndao4xw87" path="res://hall_do_queijo.gd" id="1_dw1uh"]
+[ext_resource type="Script" uid="uid://dubc07juagfnk" path="res://hall_do_queijo.gd" id="1_dw1uh"]
 [ext_resource type="Texture2D" uid="uid://1mc2gphrohg7" path="res://assets/sprites/CortesDoMapa/Prancheta_1.png" id="1_h2ksd"]
 [ext_resource type="Texture2D" uid="uid://bft44eq1uf20f" path="res://assets/sprites/CortesDoMapa/mapa fractal SAFE ZONE-export.png" id="2_h2ksd"]
 [ext_resource type="PackedScene" uid="uid://bi04t2jd83mha" path="res://scene/elevador_interativo.tscn" id="3_p3xb5"]

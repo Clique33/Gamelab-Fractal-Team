@@ -1,14 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=11 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
-[ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scene/node.gd" id="1_jobxa"]
-[ext_resource type="Script" uid="uid://ccothyxievc51" path="res://scene/teste_mapa_2.gd" id="1_tlrdx"]
+[ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scripts/node.gd" id="1_jobxa"]
+[ext_resource type="Script" uid="uid://ccothyxievc51" path="res://scripts/teste_mapa_2.gd" id="1_tlrdx"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
-[ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]
-[ext_resource type="PackedScene" uid="uid://djrevjgpeak50" path="res://scene/golem_branco.tscn" id="5_0ny76"]
-[ext_resource type="PackedScene" uid="uid://c80omegwkn2ei" path="res://scene/behemot.tscn" id="5_nv5yn"]
 [ext_resource type="PackedScene" uid="uid://deyn0aff4vkxb" path="res://scene/beholder2.tscn" id="6_h1h8w"]
-[ext_resource type="PackedScene" uid="uid://dr0s7gb32d5vh" path="res://scene/golem_azul.tscn" id="6_to50h"]
 [ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://scene/npc.tscn" id="7_6yspw"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
 [ext_resource type="AudioStream" uid="uid://ce378hasf2vjm" path="res://assets/musica/Hades - God of the Dead - Supergiant Games (youtube).mp3" id="11_n1k66"]
@@ -21,21 +17,6 @@ script = ExtResource("1_tlrdx")
 [node name="Node" type="Node" parent="." node_paths=PackedStringArray("label_contador")]
 script = ExtResource("1_jobxa")
 label_contador = NodePath("../player/enemies")
-
-[node name="golem" parent="Node" instance=ExtResource("4_mtgoy")]
-position = Vector2(512, 201)
-
-[node name="golem_azul" parent="Node" instance=ExtResource("6_to50h")]
-position = Vector2(217, 430)
-
-[node name="golem_2b2" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(847, 424)
-
-[node name="golem_2b" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(923, 154)
-
-[node name="golem2" parent="Node" instance=ExtResource("5_nv5yn")]
-position = Vector2(298, 198)
 
 [node name="golem3" parent="Node" instance=ExtResource("6_h1h8w")]
 position = Vector2(1372, 384)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cerom0ls1c2wk"]
 
-[ext_resource type="Script" uid="uid://3sojsttqv77" path="res://scene/npc_3.gd" id="1_4xvn2"]
+[ext_resource type="Script" uid="uid://3sojsttqv77" path="res://scripts/npc_3.gd" id="1_4xvn2"]
 [ext_resource type="Texture2D" uid="uid://b80tuigosseak" path="res://assets/sprites/player/IdleMChata.png" id="2_gvl2t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gu3sj"]
