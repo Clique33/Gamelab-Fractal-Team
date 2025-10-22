@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=17 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scripts/node.gd" id="1_jobxa"]
@@ -6,10 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
 [ext_resource type="PackedScene" uid="uid://deyn0aff4vkxb" path="res://scene/beholder2.tscn" id="6_h1h8w"]
 [ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://scene/npc.tscn" id="7_6yspw"]
+[ext_resource type="Script" uid="uid://bu55xg23achvn" path="res://scene/barreira.gd" id="8_ysv2v"]
 [ext_resource type="FontFile" uid="uid://dboxkasdapd73" path="res://Fontes/BoldPixels.ttf" id="9_6yspw"]
 [ext_resource type="AudioStream" uid="uid://ce378hasf2vjm" path="res://assets/musica/Hades - God of the Dead - Supergiant Games (youtube).mp3" id="11_n1k66"]
 [ext_resource type="PackedScene" uid="uid://bw0i1wy6c26yp" path="res://scene/pause.tscn" id="13_lo0pi"]
 [ext_resource type="Texture2D" uid="uid://djobcv11wiaxa" path="res://imagens/MISSOES_EM_ANDAMENTO.png" id="13_ysv2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysv2v"]
+size = Vector2(154.643, 5.35712)
 
 [node name="Teste" type="Node2D"]
 script = ExtResource("1_tlrdx")
@@ -18,11 +22,88 @@ script = ExtResource("1_tlrdx")
 script = ExtResource("1_jobxa")
 label_contador = NodePath("../player/enemies")
 
+[node name="golem_azul" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(217, 430)
+
+[node name="golem_2b2" parent="Node" instance=ExtResource("5_0ny76")]
+position = Vector2(847, 424)
+
+[node name="golem_2b" parent="Node" instance=ExtResource("5_0ny76")]
+position = Vector2(923, 154)
+
+[node name="golem2" parent="Node" instance=ExtResource("5_nv5yn")]
+position = Vector2(298, 198)
+
 [node name="golem3" parent="Node" instance=ExtResource("6_h1h8w")]
 position = Vector2(1372, 384)
 
+[node name="golem_azul2" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(669, 693)
+
+[node name="golem_2b3" parent="Node" instance=ExtResource("5_0ny76")]
+position = Vector2(158, 693)
+
+[node name="golem" parent="Node" instance=ExtResource("6_h1h8w")]
+position = Vector2(441, 677)
+
+[node name="golem4" parent="Node" instance=ExtResource("5_nv5yn")]
+position = Vector2(1123, 356)
+
+[node name="golem5" parent="Node" instance=ExtResource("6_h1h8w")]
+position = Vector2(1368, 184)
+
+[node name="golem6" parent="Node" instance=ExtResource("6_h1h8w")]
+position = Vector2(956, 725)
+
+[node name="golem_azul3" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(1255, 703)
+
+[node name="golem_azul4" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(1435, 695)
+
+[node name="golem_2b4" parent="Node" instance=ExtResource("5_0ny76")]
+position = Vector2(1087, 723)
+
+[node name="golem7" parent="Node" instance=ExtResource("4_mtgoy")]
+position = Vector2(799, 757)
+
+[node name="golem8" parent="Node" instance=ExtResource("4_mtgoy")]
+position = Vector2(750, 766)
+
+[node name="golem9" parent="Node" instance=ExtResource("4_mtgoy")]
+position = Vector2(60, 732)
+
+[node name="golem10" parent="Node" instance=ExtResource("4_mtgoy")]
+position = Vector2(54, 675)
+
+[node name="golem_2b5" parent="Node" instance=ExtResource("5_0ny76")]
+position = Vector2(134, 190)
+
+[node name="golem11" parent="Node" instance=ExtResource("6_h1h8w")]
+position = Vector2(114, 384)
+
+[node name="golem12" parent="Node" instance=ExtResource("6_h1h8w")]
+position = Vector2(562, 723)
+
+[node name="golem13" parent="Node" instance=ExtResource("5_nv5yn")]
+position = Vector2(1258, 389)
+
+[node name="golem_azul5" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(516, 452)
+
+[node name="golem_azul6" parent="Node" instance=ExtResource("6_to50h")]
+position = Vector2(730, 344)
+
 [node name="TerrainManager" parent="." instance=ExtResource("1_32r3e")]
 position = Vector2(-1, 45)
+
+[node name="barreira" type="StaticBody2D" parent="TerrainManager"]
+script = ExtResource("8_ysv2v")
+
+[node name="colisaobarreira" type="CollisionShape2D" parent="TerrainManager/barreira"]
+position = Vector2(405.536, -55.5357)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_ysv2v")
 
 [node name="NPC" parent="." instance=ExtResource("7_6yspw")]
 position = Vector2(510.9, -118)
@@ -87,3 +168,5 @@ scale = Vector2(1.74863, 0.959864)
 stream = ExtResource("11_n1k66")
 volume_db = -19.299
 autoplay = true
+
+[connection signal="dialogo_concluido" from="NPC" to="TerrainManager/barreira" method="_on_npc_dialogo_concluido"]
