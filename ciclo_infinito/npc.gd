@@ -11,7 +11,11 @@ var falando = false
 var pode_avancar = false
 var fala_index = 0
 
-var falas = ["Olá, meu chapa. Você infelizmente acabou de entrar em um purgatório da uerj." , "Aqui é onde todas as almas atormentadas dos estudantes ficam ao reprovarem pela primeira vez em Cálculo 1", "A maioria nunca havia experenciado a dor da reprovação, e quando isso acontece, infelizmente acabam ficando atormentadas"]
+var falas = ["Olá, meu chapa. Você infelizmente acabou de entrar em um purgatório da UERJ." , 
+"No quinto andar, moram os golems  monstros que guardam os segredos mais sombrios da engenharia.",
+"Entre todos os monstros do quinto andar, há um ser místico temido por todos: o Olho da Pressão.
+De seu único olhar nasce um feixe que atravessa a alma dos estudantes — símbolo da ansiedade, da cobrança e do medo de falhar.",
+"Estou descansando do meu último combate, vença os mosntro restantes depois fale comigo novamente para te dar mais informações"]
 
 func _ready() -> void:
 	caixa_de_dialogo.visible = false
@@ -33,6 +37,7 @@ func proxima_fala():
 	if fala_index < falas.size():
 		pode_avancar = false
 		texto_dialogo.text = ""
+#		if 
 		var texto = falas[fala_index]
 		fala_index += 1
 		mostrar_texto_com_efeito(texto)

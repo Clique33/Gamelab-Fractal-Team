@@ -10,10 +10,12 @@ var falando = false
 var pode_avancar = false
 var fala_index = 0
 
-var falas = ["Olá, você deve ser o Arthur pica de mel, certo?", 
-"Agora que você chegou na UERJ, pegue o elevador no Hall do Queijo e suba até o 5° andar",
-"Lá você deve encontrar o veterano Pedro!",
-"Ele deve te ajudar com os próximos passos aqui na UERJ." 
+var falas = ["Ora, seja bem-vindo à UERJ! Então você é o novo calouro de Engenharia, não é?
+", 
+"Pois prepare-se, o quinto andar será praticamente sua segunda casa durante esse ciclo",
+"É lá que tudo acontece — aulas, projetos, noites viradas e muita cafeína!",
+"Ah, e se encontrar o Pedro, o veterano, fale com ele.
+Ele vai te orientar sobre os primeiros passos e talvez até te dar umas boas dicas de sobrevivência por aqui" 
 ]
 
 func _ready() -> void:

@@ -20,7 +20,7 @@ func _ready() -> void:
 		print("Aviso: Nenhum inimigo encontrado como filho.")
 		if label_contador:
 			label_contador.text = "Inimigos mortos: N/A" 
-		vitoria()
+		#vitoria()
 		return
 
 	for inimigo in get_children():
@@ -38,12 +38,12 @@ func _ready() -> void:
 func _on_inimigo_derrotado() -> void:
 	inimigos_mortos += 1
 	print("Um inimigo morreu! Contagem: ", inimigos_mortos, " / ", total_inimigos)
-	
+	if inimigos_mortos == total_inimigos:
+		get_parent().proxima_missao()
 	
 	_atualizar_label()
 	
-	if inimigos_mortos == total_inimigos:
-		vitoria()
+
 
 
 func _atualizar_label() -> void:

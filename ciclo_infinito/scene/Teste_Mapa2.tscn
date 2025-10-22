@@ -1,13 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1t0cprxobugr"]
+[gd_scene load_steps=13 format=3 uid="uid://c1t0cprxobugr"]
 
 [ext_resource type="PackedScene" uid="uid://bbf6oefdi3vmk" path="res://scene/Mapa não polido.tscn" id="1_32r3e"]
 [ext_resource type="Script" uid="uid://vfsqlq8qspim" path="res://scene/node.gd" id="1_jobxa"]
 [ext_resource type="Script" uid="uid://ccothyxievc51" path="res://scene/teste_mapa_2.gd" id="1_tlrdx"]
 [ext_resource type="PackedScene" uid="uid://3qoae7f6uh8o" path="res://scene/player.tscn" id="3_m560e"]
-[ext_resource type="PackedScene" uid="uid://dfda1r1btgkpl" path="res://scene/golem.tscn" id="4_mtgoy"]
-[ext_resource type="PackedScene" uid="uid://djrevjgpeak50" path="res://scene/golem_branco.tscn" id="5_0ny76"]
-[ext_resource type="PackedScene" uid="uid://c80omegwkn2ei" path="res://scene/behemot.tscn" id="5_nv5yn"]
-[ext_resource type="PackedScene" uid="uid://deyn0aff4vkxb" path="res://scene/beholder2.tscn" id="6_h1h8w"]
 [ext_resource type="PackedScene" uid="uid://dr0s7gb32d5vh" path="res://scene/golem_azul.tscn" id="6_to50h"]
 [ext_resource type="PackedScene" uid="uid://sf0ngt0mifqa" path="res://scene/npc.tscn" id="7_6yspw"]
 [ext_resource type="Script" uid="uid://bu55xg23achvn" path="res://scene/barreira.gd" id="8_ysv2v"]
@@ -26,75 +22,6 @@ script = ExtResource("1_tlrdx")
 script = ExtResource("1_jobxa")
 label_contador = NodePath("../player/enemies")
 
-[node name="golem_azul" parent="Node" instance=ExtResource("6_to50h")]
-position = Vector2(217, 430)
-
-[node name="golem_2b2" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(847, 424)
-
-[node name="golem_2b" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(923, 154)
-
-[node name="golem2" parent="Node" instance=ExtResource("5_nv5yn")]
-position = Vector2(298, 198)
-
-[node name="golem3" parent="Node" instance=ExtResource("6_h1h8w")]
-position = Vector2(1372, 384)
-
-[node name="golem_azul2" parent="Node" instance=ExtResource("6_to50h")]
-position = Vector2(669, 693)
-
-[node name="golem_2b3" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(158, 693)
-
-[node name="golem" parent="Node" instance=ExtResource("6_h1h8w")]
-position = Vector2(441, 677)
-
-[node name="golem4" parent="Node" instance=ExtResource("5_nv5yn")]
-position = Vector2(1123, 356)
-
-[node name="golem5" parent="Node" instance=ExtResource("6_h1h8w")]
-position = Vector2(1368, 184)
-
-[node name="golem6" parent="Node" instance=ExtResource("6_h1h8w")]
-position = Vector2(956, 725)
-
-[node name="golem_azul3" parent="Node" instance=ExtResource("6_to50h")]
-position = Vector2(1255, 703)
-
-[node name="golem_azul4" parent="Node" instance=ExtResource("6_to50h")]
-position = Vector2(1435, 695)
-
-[node name="golem_2b4" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(1087, 723)
-
-[node name="golem7" parent="Node" instance=ExtResource("4_mtgoy")]
-position = Vector2(799, 757)
-
-[node name="golem8" parent="Node" instance=ExtResource("4_mtgoy")]
-position = Vector2(750, 766)
-
-[node name="golem9" parent="Node" instance=ExtResource("4_mtgoy")]
-position = Vector2(60, 732)
-
-[node name="golem10" parent="Node" instance=ExtResource("4_mtgoy")]
-position = Vector2(54, 675)
-
-[node name="golem_2b5" parent="Node" instance=ExtResource("5_0ny76")]
-position = Vector2(134, 190)
-
-[node name="golem11" parent="Node" instance=ExtResource("6_h1h8w")]
-position = Vector2(114, 384)
-
-[node name="golem12" parent="Node" instance=ExtResource("6_h1h8w")]
-position = Vector2(562, 723)
-
-[node name="golem13" parent="Node" instance=ExtResource("5_nv5yn")]
-position = Vector2(1258, 389)
-
-[node name="golem_azul5" parent="Node" instance=ExtResource("6_to50h")]
-position = Vector2(516, 452)
-
 [node name="golem_azul6" parent="Node" instance=ExtResource("6_to50h")]
 position = Vector2(730, 344)
 
@@ -106,7 +33,6 @@ script = ExtResource("8_ysv2v")
 
 [node name="colisaobarreira" type="CollisionShape2D" parent="TerrainManager/barreira"]
 position = Vector2(405.536, -55.5357)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ysv2v")
 
 [node name="NPC" parent="." instance=ExtResource("7_6yspw")]
